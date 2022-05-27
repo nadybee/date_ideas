@@ -1,15 +1,36 @@
+body{
+    padding: 100px;
+    margin:auto;
+    width: 100%;
+}
 h1{
     color:blueviolet
 }
 .idea {
     font-size: 24px;
-    color:crimson;
+    color:black;
     padding: 10px
 }
 
 .restaurant {
     font-size: 24px;
-    color:crimson;
+    color:black;
     padding: 10px
 
+}
+
+button {
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: red;
+    border: none;
+    color:white;
+    margin-top: 36px;
+}
+input{
+    height: 36px;
+    padding:10px;
+    margin: 10px;
+    border: 2px solid purple;
 }
