@@ -1,27 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script
+      src="https://kit.fontawesome.com/4f1341bf20.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#E71D32",
+              secondary: "#4EB791",
+              textcolor: "#343A40",
+              pearl: "#F6F6F6",
+            },
+            fontFamily: {
+              sans: [],
+              serif: [],
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="stylesheet" href="./assets/styles.css" />
     <title>Date Ideas</title>
-</head>
-<body>
-    <form action="submit">
-<label for="zipcode">zipcode</label>
-    <input type="text" id="zipcode">
-    <button type="submit" id="zipcode-button"> submit</button>
-</form>
-    <h1>restaurant ideas</h1>
-    <!-- <button class="restaurants">restaurant ideas</button> -->
-    <div class="restaurant"></div>
-    <h1>date ideas</h1>
+  </head>
+  <body>
+    <header class="nav-bar bg-secondary">
+      <div class="flex justify-between pt-2">
+        <h1 class="text-3xl font-bold text-white p-2">PLAN MY DATE</h1>
+        <i class="fa-solid fa-book-heart text-primary p-2 pr-6 text-3xl"></i>
+       
+      </div>
+      <h3 class="text-white pb-2 pl-2">
+        Can't decide what to do? Let us choose for you!
+      </h3>
+    </header>
+    <body>
+        
+<div class="container"> 
+    <h2>Help us pick your restaurant</h2>
+    <label for="zipode">enter your zipcode</label>
+    <h3>how much do you want to spend?</h3>
+    <div id="price">
+      <label for="$">$</label>
+      <input type="radio" name="$" id="$" />
+      <label for="$$">$$</label>
+      <input type="radio" name="$$" id="$$" />
+      <label for="$$$">$$$</label>
+      <input type="radio" name="$$$" id="$$$" />
+      <label for="$$$$">$$$$</label>
+      <input type="radio" name="$$$$" id="$$$$$" />
+    </div>
+    <h3>Do you want to go Now?</h3>
+    <div id="hours">
+      <label for="now"> open now</label>
+      <input type="radio" name="now" id="now" />
+      <label for="no-matter">doesn't matter</label>
+      <input type="radio" name="no-matter" id="no-matter" />
+    </div>
 
-    <!-- <button class="date-ideas">date ideas</button> -->
-    <div class="idea"></div>
-
-    <button class="do-both"> plan my date </button>
-   <script src="./script.js"></script> 
+    <button class="">next</button>
+</div>
 </body>
+    <script src="./script.js"></script>
+  </body>
 </html>
