@@ -36,39 +36,64 @@
       <div class="flex justify-between pt-2">
         <h1 class="text-3xl font-bold text-white p-2">PLAN MY DATE</h1>
         <i class="fa-solid fa-book-heart text-primary p-2 pr-6 text-3xl"></i>
-       
       </div>
       <h3 class="text-white pb-2 pl-2">
         Can't decide what to do? Let us choose for you!
       </h3>
     </header>
-    <body>
-        
-<div class="container"> 
-    <h2>Help us pick your restaurant</h2>
-    <label for="zipode">enter your zipcode</label>
-    <h3>how much do you want to spend?</h3>
-    <div id="price">
-      <label for="$">$</label>
-      <input type="radio" name="$" id="$" />
-      <label for="$$">$$</label>
-      <input type="radio" name="$$" id="$$" />
-      <label for="$$$">$$$</label>
-      <input type="radio" name="$$$" id="$$$" />
-      <label for="$$$$">$$$$</label>
-      <input type="radio" name="$$$$" id="$$$$$" />
-    </div>
-    <h3>Do you want to go Now?</h3>
-    <div id="hours">
-      <label for="now"> open now</label>
-      <input type="radio" name="now" id="now" />
-      <label for="no-matter">doesn't matter</label>
-      <input type="radio" name="no-matter" id="no-matter" />
-    </div>
+    <body class="">
+      <div class="container flex flex-col">
+        <h2
+          class="text-2xl text-secondary font-bold text-center justify-center mt-6 mb-5"
+        >
+          Help us pick your restaurant
+        </h2>
+        <div class="flex mt-10 ml-5 mb-7">
+          <label
+            class="text-textcolor text-xl font-semibold mr-4"
+            for="zipcode"
+            >Enter your zipcode</label
+          >
 
-    <button class="">next</button>
-</div>
-</body>
+          <input type="text" class="border-primary border h-8 w-32 bg-pearl rounded" id="zipcode" />
+        </div>
+         
+        <h3 class="text-textcolor text-xl font-semibold mr-5 mt-7  ml-4 ">How much do you want to spend?</h3>
+
+        <div class="flex  justify-between mx-5 mt-4 text-xl mb-7"> 
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-pearl checked:border-4 checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" name="price-options" id="$" value="1"/>
+                <label class="form-check-label inline-block text-textcolor" for="$">$</label>
+            </div>
+            <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-secondary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"  name="price-options" id="$$" value="2" />
+          <label class="form-check-label inline-block text-textcolor" for="$$">$$</label>
+            </div>
+            <div class="form-check form-check-inline">
+          <input type="radio" class= "form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" name="price-options" id="$$$" value="3"/>
+          <label class="form-check-label inline-block text-textcolor" for="$$$">$$$</label>
+            </div>
+            <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" name="price-options" id="$$$$$" value="4" />
+          <label class="form-check-label inline-block text-textcolor" for="$$$$">$$$$</label>
+            </div>
+         </div>
+    
+        <h3 class="text-xl font-bold mt-5 ml-4">Do you want to go now?</h3>
+        <div class="flex  justify-evenly mx-4 mt-4 text-xl" id="hours"> 
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" name="hours" id="open-now" value="open-now" />
+                <label class="form-check-label inline-block text-textcolor" for="open-now">open now</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" name="hours" id="no-matter" value="no-matter" />
+                    <label class="form-check-label inline-block text-textcolor" for="no-matter">it doesn't matter</label>
+                      </div>
+        </div>
+
+        <button class="bg-primary text-white text-xl font-bold p-3 w-5/6 rounded-md mx-auto mt-6 fixed bottom-7 left-7">next</button>
+    </div>
+    </body>
     <script src="./script.js"></script>
   </body>
 </html>
