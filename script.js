@@ -1,12 +1,82 @@
 var zipCode = 84097
 var ideas = document.querySelector(".idea")
 var restaurant = document.querySelector(".restaurant")
-
 var zipcodeInput= document.getElementById('zipcode')
-
 let zipcode=84097
 let openNow = false;
 let price = 2
+
+/** BUTTONS */
+var next = document.getElementById('next')
+var savedDates= document.querySelector('.fa-book-heart')
+var planDate = document.getElementById('plan-date')
+var newRestaurant = document.getElementById('new-restaurant')
+var newActivity = document.getElementById('new-activity')
+var back1 = document.getElementById('back-1')
+var back2= document.getElementById('back-2')
+var save = document.getElementById('save')
+var returnHome = document.getElementById('return-home')
+var homeIcon = document.getElementById('home-icon')
+
+/**PAGES CONTAINERS AND HEADERS */
+var page1Header = document.getElementById('page1-header')
+var page1Cont = document.getElementById('page-one')
+var page2Cont = document.getElementById('page-two')
+var page3Header = document.getElementById('page3-header')
+var page3Cont = document.getElementById('page-three')
+var page4Header = document.getElementById('page4-header')
+var page4Cont = document.getElementById('page-four')
+
+
+
+/** FUNCTIONS TO SHOW AND HIDE PAGES */
+function showPage1 () {
+    page1Header.classList.remove('hidden')
+    page1Cont.classList.remove('hidden')
+    page2Cont.classList.add('hidden')
+    page3Header.classList.add('hidden')
+    page3Cont.classList.add('hidden')
+    page4Header.classList.add('hidden')
+    page4Cont.classList.add('hidden')
+}
+
+function showPage2(){
+
+    page2Cont.classList.remove('hidden')
+    page1Header.classList.add('hidden')
+    page1Cont.classList.add('hidden')
+    page3Header.classList.add('hidden')
+    page3Cont.classList.add('hidden')
+    page4Header.classList.add('hidden')
+    page4Cont.classList.add('hidden')
+    
+}
+
+function showPage3(){
+  
+    page3Cont.classList.remove('hidden')
+    page1Header.classList.add('hidden')
+    page1Cont.classList.add('hidden')
+    page2Cont.classList.add('hidden')
+    page4Header.classList.add('hidden')
+    page4Cont.classList.add('hidden')
+
+}
+
+function showPage4(){
+    page4Header.classList.remove('hidden')
+    page4Cont.classList.remove('hidden')   
+    page1Header.classList.add('hidden')
+    page1Cont.classList.add('hidden')
+    page1Cont.classList.add('hidden')
+    page2Cont.classList.add('hidden')
+    page3Header.classList.add('hidden')
+    page3Cont.classList.add('hidden') 
+
+}
+
+
+
 function setZipcode() {
     
     if(zipcodeInput.value.length ===5){
@@ -82,15 +152,19 @@ function doAll (event){
     fetchRestaurants()
 }
 
-function doBoth(){ 
+function showMyDate(){ 
 fetchActivities()
 fetchRestaurants()
+showPage3()
 }
 
 
-//   document.querySelector('#plan-date')
-//   .addEventListener('click', doBoth)
-
-
-  document.getElementById('plan-date')
-  .addEventListener('click', doAll)
+/** EVENT LISTENERS */
+next.addEventListener('click',showPage2)
+back1.addEventListener('click',showPage1)
+planDate.addEventListener('click', showMyDate)
+back2.addEventListener('click', showPage2)
+save.addEventListener('click', showPage4)
+returnHome.addEventListener('click',showPage1)
+savedDates.addEventListener('click',showPage4)
+homeIcon.addEventListener('click', showPage1)
