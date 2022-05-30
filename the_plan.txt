@@ -1,0 +1,49 @@
+issues: 
+cors with yelp fetch
+cdn with tailwind
+
+// create variable for zipcode value
+//check valid zipcode
+//regex
+//UI warning if bad zipcode
+
+/*variable for spend
+default $$
+change the variable */
+
+/*variable for open
+default doesn't
+change the variable */
+
+//NEXT BUTTON
+/*set fetch YELP URL
+goes to next page */
+
+//PLAN DATE BUTTON
+
+/*set url for bored api
+fetch yelp api
+fetch bored api
+create HTML for random restaurant 
+create HTML for random activity
+goes to third page showing above HTML
+*/ 
+
+//GIVE ME A NEW RESTAURANT 
+/* uses same URl and fetches a new random restaurant
+creates HTML
+displays new html
+*/
+
+//GIVE ME A NEW ACTIVITY
+/* uses same URl and fetches a new random activity
+creates restaurant HTML
+displays new restaurant html
+*/
+
+//BACK BUTTON
+/*returns home*/
+
+//BACK ICON
+/*returns to previous page/
+

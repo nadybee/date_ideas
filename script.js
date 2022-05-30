@@ -46,7 +46,7 @@ function fetchRestaurants() {
       console.log(data)
       let randomIndex = Math.floor(Math.random() * data.businesses.length)
 
-      restaurant.innerText = data.businesses[randomIndex].name + ' ' + data.businesses[randomIndex].location.display_address
+console.log( data.businesses[randomIndex].name + ' ' + data.businesses[randomIndex].location.display_address)
     })
 
     .catch((error) => console.log("error", error))
@@ -68,7 +68,7 @@ function fetchActivities() {
     .then(function (data) {
       console.log(data.activity)
 
-      ideas.innerText = data.activity
+    //   ideas.innerText = data.activity
     })
   // .catch((error)=>{
 
@@ -77,7 +77,7 @@ function fetchActivities() {
 }
 function doAll (event){
     event.preventDefault()
-    setZipcode()
+    // setZipcode()
     fetchActivities()
     fetchRestaurants()
 }
@@ -88,8 +88,9 @@ fetchRestaurants()
 }
 
 
-  document.querySelector('.do-both')
-  .addEventListener('click', doBoth)
+//   document.querySelector('#plan-date')
+//   .addEventListener('click', doBoth)
 
-  document.getElementById('zipcode-button')
+
+  document.getElementById('plan-date')
   .addEventListener('click', doAll)
