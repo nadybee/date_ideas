@@ -17,32 +17,39 @@ var back2= document.getElementById('back-2')
 var save = document.getElementById('save')
 var returnHome = document.getElementById('return-home')
 var homeIcon = document.getElementById('home-icon')
+var backIcon = document.querySelector('.fa-angle-left')
 
 /**PAGES CONTAINERS AND HEADERS */
 var page1Header = document.getElementById('page1-header')
 var page1Cont = document.getElementById('page-one')
 var page2Cont = document.getElementById('page-two')
+var page2Header = document.getElementById('page2-header')
 var page3Header = document.getElementById('page3-header')
+
 var page3Cont = document.getElementById('page-three')
 var page4Header = document.getElementById('page4-header')
 var page4Cont = document.getElementById('page-four')
 
-
+/** SELECTED DIVS TO DISPLAY DATA */
+var restaurantImg = document.getElementById('restaurant-img')
+var restaurantInfo = document.getElementById ('restaurant-info')
+var activity = document.getElementById ('activity')
 
 /** FUNCTIONS TO SHOW AND HIDE PAGES */
 function showPage1 () {
     page1Header.classList.remove('hidden')
     page1Cont.classList.remove('hidden')
+    page2Header.classList.add('hidden')
     page2Cont.classList.add('hidden')
-    page3Header.classList.add('hidden')
+    page3Header.classList.ad('hidden')
     page3Cont.classList.add('hidden')
     page4Header.classList.add('hidden')
     page4Cont.classList.add('hidden')
 }
 
 function showPage2(){
-
-    page2Cont.classList.remove('hidden')
+    page2Header.classList.remove('hidden')
+    page2Cont.classList.remove('hidden')  
     page1Header.classList.add('hidden')
     page1Cont.classList.add('hidden')
     page3Header.classList.add('hidden')
@@ -55,8 +62,10 @@ function showPage2(){
 function showPage3(){
   
     page3Cont.classList.remove('hidden')
+    page3Header.classList.remove('md:hidden')
     page1Header.classList.add('hidden')
     page1Cont.classList.add('hidden')
+    page2Header.classList.add('hidden')
     page2Cont.classList.add('hidden')
     page4Header.classList.add('hidden')
     page4Cont.classList.add('hidden')
@@ -69,8 +78,9 @@ function showPage4(){
     page1Header.classList.add('hidden')
     page1Cont.classList.add('hidden')
     page1Cont.classList.add('hidden')
+    page2Header.classList.add('hidden')
     page2Cont.classList.add('hidden')
-    page3Header.classList.add('hidden')
+    page3Header.classList.add('md:hidden')
     page3Cont.classList.add('hidden') 
 
 }
@@ -117,6 +127,8 @@ function fetchRestaurants() {
       let randomIndex = Math.floor(Math.random() * data.businesses.length)
 
 console.log( data.businesses[randomIndex].name + ' ' + data.businesses[randomIndex].location.display_address)
+        showImg(data.businesses[randomIndex])
+        showInfo(data.businesses[randomIndex])
     })
 
     .catch((error) => console.log("error", error))
@@ -137,6 +149,7 @@ function fetchActivities() {
     })
     .then(function (data) {
       console.log(data.activity)
+      showActivity(data)
 
     //   ideas.innerText = data.activity
     })
@@ -145,6 +158,23 @@ function fetchActivities() {
   //     console.log(error)
   // })
 }
+
+function showImg(restaurant){
+    restaurantImg.innerHTML = `<img src="${restaurant.image_url}" alt="image of food " class="w-full   object-cover rounded-md">`
+
+}
+
+function showInfo (restaurant){
+    restaurantInfo.innerHTML =  `<h3 class= " text-xl md:text-2xl font-bold text-textcolor"> ${restaurant.name}</h3>
+    <p class="md:text-xl"> ${restaurant.location.display_address}</p>
+    <p class="md:text-xl">${restaurant.phone}</p>`
+
+}
+
+function showActivity (data) {
+    activity.innerHTML = `<h3 class="text-xl text-textcolor font-bold text-center w-full mx-2 my-auto md:text-2xl"> ${data.activity}</h3>`
+}
+
 function doAll (event){
     event.preventDefault()
     // setZipcode()
@@ -168,3 +198,4 @@ save.addEventListener('click', showPage4)
 returnHome.addEventListener('click',showPage1)
 savedDates.addEventListener('click',showPage4)
 homeIcon.addEventListener('click', showPage1)
+backIcon.addEventListener('click',showPage1)
