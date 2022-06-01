@@ -202,15 +202,17 @@ function doAll (event){
 }
 
 function showMyDate(){ 
-// fetchActivities()
-buildActivity()
-fetchRestaurants()
-showPage3()
+  buildActivity()
+  showPage3()
 }
 
 
+function restaurantInfo(){
+  buildYelpURL()
+  showPage2()
+}
 /** EVENT LISTENERS */
-next.addEventListener('click',showPage2)
+next.addEventListener('click',restaurantInfo)
 back1.addEventListener('click',showPage1)
 planDate.addEventListener('click', showMyDate)
 back2.addEventListener('click', showPage2)
