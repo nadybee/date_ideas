@@ -2,9 +2,6 @@ var zipCode = 84097
 var ideas = document.querySelector(".idea")
 var restaurant = document.querySelector(".restaurant")
 var zipcodeInput= document.getElementById('zipcode')
-let zipcode=84097
-let openNow = false;
-let price = 2
 
 /** BUTTONS */
 var next = document.getElementById('next')
@@ -102,18 +99,24 @@ function setZipcode() {
 var apiKey =
   "Bearer HyNYhS-Wk9nc__m_elZsc3b9xAcu1I2Y0VcFoRw7XUMwWUXiwjjOAJU3jIYeFHgOyVHwGgkDE-Tcrp7k0ED2vdCXHAARiWKDylcxBQ-zm19OPXRgpRT_vt3O-1SNYnYx"
 var yelpURL =  `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}`
+
 // var yelpURL =  `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}`
 
 
 function buildYelpURL() {
-    var yelpURL =  `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=84097`
-//   &price=2"
+  let zipcode=zipcodeInput.value
+  let price=document.querySelector('input[name=price-options]:checked').value;
+  let open=document.querySelector('input[name=open-now]:checked').value;
+
+    var yelpURL =  `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipCode}&price=${price}&open_now=${open}`
+  fetchRestaurants(yelpURL)
 
 }
-function fetchRestaurants() {
+function fetchRestaurants(yelpURL) {
   var myHeaders = new Headers()
   myHeaders.append("Authorization", apiKey)
   myHeaders.append("mode","no-cors")
+  
 
   var requestOptions = {
     headers: myHeaders,
