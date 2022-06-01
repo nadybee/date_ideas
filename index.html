@@ -35,17 +35,23 @@
     <header>
       <!-- PAGE ONE HEADER -->
       <div class="flex flex-col nav-bar bg-secondary" id="page1-header">
-        <div class="flex justify-between pt-2 md:w-4/6 md:mx-auto  md:pt-5 ">
+        <div class="flex justify-between pt-2 md:w-4/6 md:mx-auto md:pt-5">
           <h1 class="text-3xl font-bold text-white py-2 ml-4">PLAN MY DATE</h1>
           <i
-            class="fa-solid fa-book-heart text-primary p-2 pr-6 mr-4 text-3xl md:pt-4 "
+            class="fa-solid fa-book-heart text-primary p-2 pr-6 mr-4 text-3xl md:pt-4"
           ></i>
         </div>
-        <h3 class="text-white pb-2 self-center md:self-start md:w-4/6 md:mx-auto md:pl-4 ">Can't decide what to do? Let us choose for you!
+        <h3
+          class="text-white pb-2 self-center md:self-start md:w-4/6 md:mx-auto md:pl-4"
+        >
+          Can't decide what to do? Let us choose for you!
         </h3>
       </div>
       <!-- PAGE TWO HEADER -->
-      <div class="flex flex-col nav-bar hidden md: hidden md:bg-secondary md:py-3" id="page2-header">
+      <div
+        class="flex flex-col nav-bar hidden md: hidden md:bg-secondary md:py-3"
+        id="page2-header"
+      >
         <div class="flex justify-between pt-2 md:w-4/6 md:mx-auto">
           <i
             class="fa-solid fa-angle-left text-primary p-2 pl-6 mr-4 text-3xl md:pt-2"
@@ -68,14 +74,18 @@
         </div>
         <div class="flex-grow border-t-8 border-pearl w-full"></div>
       </div>
-       <!-- PAGE FOUR HEADER -->
-       <div class="flex flex-col nav-bar hidden md:bg-secondary" id="page4-header">
+      <!-- PAGE FOUR HEADER -->
+      <div
+        class="flex flex-col nav-bar hidden md:bg-secondary"
+        id="page4-header"
+      >
         <div class="flex justify-between pt-2 md:w-4/6 md:mx-auto md:py-5">
-          <h2 class="text-2xl md:text-white  font-bold text-textcolor py-2 ml-8">
+          <h2 class="text-2xl md:text-white font-bold text-textcolor py-2 ml-8">
             SAVED DATES
           </h2>
           <i
-            class="fa-solid fa-house-chimney-heart text-primary p-2 pr-6 mr-4 text-3xl" id="home-icon"
+            class="fa-solid fa-house-chimney-heart text-primary p-2 pr-6 mr-4 text-3xl"
+            id="home-icon"
           ></i>
         </div>
         <div class="flex-grow border-t-8 border-pearl w-full"></div>
@@ -100,7 +110,7 @@
 
             <input
               type="text"
-              class="border-primary border h-8 w-32 bg-pearl rounded"
+              class="border-primary border h-8 w-32 bg-pearl rounded placeholder: pl-2 input: pl-2"
               id="zipcode"
             />
           </div>
@@ -113,7 +123,7 @@
             <div class="form-check form-check-inline">
               <input
                 type="radio"
-                class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-pearl checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 name="price-options"
                 id="$"
                 value="1"
@@ -212,7 +222,10 @@
         </div>
       </div>
       <!-- PAGE TWO CONTAINER PICK ACTIVITY PARAMS -->
-      <div id="page-two" class="hidden md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5">
+      <div
+        id="page-two"
+        class="hidden md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5"
+      >
         <div class="container">
           <h2
             class="text-2xl text-secondary font-bold text-center justify-center mt-6 mb-5"
@@ -228,8 +241,10 @@
 
             <input
               type="text"
-              class="border-primary border h-8 w-32 bg-pearl rounded"
+              class="border-primary border h-8 w-32 bg-pearl rounded placeholder: pl-2 input: pl-2"
               id="people"
+              placeholder="2"
+              value="2"
             />
           </div>
           <h3 class="text-textcolor text-xl font-semibold mr-5 mt-7 ml-4">
@@ -275,10 +290,11 @@
             <div class="form-check form-check-inline">
               <input
                 type="radio"
-                class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-pearl checked:border-4 checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 name="accessible"
                 id="no"
-                value="no"
+                value="1"
+                checked="checked"
               />
               <label
                 class="form-check-label inline-block text-textcolor"
@@ -292,8 +308,7 @@
                 class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-secondary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 name="accessible"
                 id="yes"
-                value="yes"
-                checked="checked"
+                value="0"
               />
               <label
                 class="form-check-label inline-block text-textcolor"
@@ -301,61 +316,73 @@
                 >YES</label
               >
             </div>
-        </div>
-            <div class="flex fixed bottom-0 w-full md:relative mt-10">
-                <button
-                  class="border-2 border-primary bg-white text-primary text-xl font-bold p-3 w-2/6 rounded-md my-6 ml-3"
-                  id="back-1"
-                  
-                >
-                  back
-                </button>
-                <button
-                  class="bg-primary text-white text-xl font-bold p-3 w-4/6 rounded-md mx-3 my-6"
-                  id="plan-date"
-                >
-                  plan my date
-                </button>
-                
-              </div>
-          
+          </div>
+          <div class="flex fixed bottom-0 w-full md:relative mt-10">
+            <button
+              class="border-2 border-primary bg-white text-primary text-xl font-bold p-3 w-2/6 rounded-md my-6 ml-3"
+              id="back-1"
+            >
+              back
+            </button>
+            <button
+              class="bg-primary text-white text-xl font-bold p-3 w-4/6 rounded-md mx-3 my-6"
+              id="plan-date"
+            >
+              plan my date
+            </button>
+          </div>
         </div>
       </div>
       <!-- PAGE THREE CONTAINER SHOW RANDOM DATE-->
-      <div id="page-three" class="hidden md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5">
+      <div
+        id="page-three"
+        class="hidden md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5"
+      >
         <div class="container">
-          <h2 class="text-2xl md:text-3xl text-secondary font-bold ml-2 mt-8 mb-3 md:mb-5">
+          <h2
+            class="text-2xl md:text-3xl text-secondary font-bold ml-2 mt-8 mb-3 md:mb-5"
+          >
             RESTAURANT
           </h2>
-          <div class="grid grid-cols-3 gap-2 mx-2 mb-5 flex justify-content-center content-center">
-            <div id="restaurant-img" class="">
-            
-            </div>
+          <div
+            class="grid grid-cols-3 gap-2 mx-2 mb-5 flex justify-content-center content-center"
+          >
+            <div id="restaurant-img" class=""></div>
             <div
               id="restaurant-info"
               class="col-span-2 bg-pearl rounded-md p-3 md:p-8"
             >
-            loading...
+              loading...
             </div>
           </div>
-          <button class="text-xl md:text-2xl text-primary text-center w-full ml-2 mb-3" id="new-restaurant">
-          find me a new restaurant
+          <button
+            class="text-xl md:text-2xl text-primary text-center w-full ml-2 mb-3"
+            id="new-restaurant"
+          >
+            find me a new restaurant
           </button>
           <div class="flex-grow border-t-8 border-pearl w-full"></div>
-          <h2 class="text-2xl text-secondary font-bold ml-2 mt-4 mb-3 md:text-3xl md:mb-5" >
+          <h2
+            class="text-2xl text-secondary font-bold ml-2 mt-4 mb-3 md:text-3xl md:mb-5"
+          >
             ACTIVITY
           </h2>
-          <div id="activity" class="flex rounded-md w-5/6 mx-8 h-40 bg-pearl justify-content-center content-center">
+          <div
+            id="activity"
+            class="flex rounded-md w-5/6 mx-8 h-40 bg-pearl justify-content-center content-center"
+          >
             loading ...
           </div>
-          <button class="text-xl md:text-2xl text-primary text-center w-full ml-2 my-3" id="new-activity">
+          <button
+            class="text-xl md:text-2xl text-primary text-center w-full ml-2 my-3"
+            id="new-activity"
+          >
             find me a new activity
-            </button>
+          </button>
           <div class="flex fixed bottom-0 w-full md:relative mt-5">
             <button
               class="border-2 border-primary bg-white text-primary text-xl font-bold p-3 w-2/6 rounded-md my-6 ml-3"
               id="back-2"
-             
             >
               back
             </button>
@@ -365,70 +392,37 @@
             >
               save
             </button>
-            
           </div>
         </div>
       </div>
       <!-- PAGE FOUR CONTAINER SAVED DATES-->
-      <div id="page-four" class="hidden md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5">
+      <div
+        id="page-four"
+        class="hidden md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5"
+      >
         <div class="container">
-            <div id="cards" class="flex flex-col mt-5">
-                <div class="grid grid-cols-3 gap-2 mx-2 mb-5 h-24 bg-pearl rounded-md">
-                    <div class="">
-                      image here
-                    </div>
-                    <div
-                      id="saved-img"
-                      class="col-span-2"
-                    >
-                      info here
-                    </div>
-            </div>
-            <div class="grid grid-cols-3 gap-2 mx-2 mb-5 h-24 bg-pearl rounded-md">
-                <div class="">
-                  image here
-                </div>
-                <div
-                  id="saved-info"
-                  class="col-span-2"
-                >
-                  info here
-                </div>
+          <div id="cards" class="flex flex-col mt-5">
+             <div class="grid grid-cols-3 gap-2 mx-2 mb-5 h-24 bg-pearl rounded-md">
+              <div class="">
+                <img src="/assets/fat japan.jpg" alt ="food image" class="w-full object-cover rounded-md">
+              </div>
+              <div
+                class="col-span-2 flex "
+              >
+               <h3 class="text-xl font-bold"> ${datesToShow[i].name}</h3>
+               <p> ${datesToShow[i].storedActivity}</p>
+              </div>
+          </div>
         </div>
-        <div class="grid grid-cols-3 gap-2 mx-2 mb-5 h-24 bg-pearl rounded-md">
-            <div class="">
-              image here
-            </div>
-            <div
-           
-              class="col-span-2"
-            >
-              info here
-            </div>
-    </div>
 
-    <div class="grid grid-cols-3 gap-2 mx-2 mb-5 h-24 bg-pearl rounded-md">
-        <div class="">
-          image here
+        <div class="fixed bottom-0 w-full md:relative mt-5">
+          <button
+            class="bg-primary text-white text-xl font-bold p-3 w-5/6 rounded-md ml-7 mr-8 my-6"
+            id="return-home"
+          >
+            return home
+          </button>
         </div>
-        <div
-          
-          class="col-span-2"
-        >
-          info here
-        </div>
-</div>
-         
-        </div>
-      </div>
-      <div class="fixed bottom-0 w-full md:relative mt-5">
-        <button
-          class="bg-primary text-white text-xl font-bold p-3 w-5/6 rounded-md ml-7 mr-8 my-6"
-          id="return-home"
-        >
-          return home
-        </button>
-    </div>
       </div>
     </body>
     <script src="./script.js"></script>
