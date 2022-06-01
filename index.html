@@ -57,7 +57,7 @@
         <div class="flex-grow border-t-8 border-pearl w-full md:hidden"></div>
       </div>
       <!-- PAGE THREE HEADER -->
-      <div class="flex flex-col nav-bar xs:hidden md:hidden" id="page3-header">
+      <div class="flex flex-col nav-bar hidden" id="page3-header">
         <div class="flex justify-between pt-2">
           <h2 class="text-2xl font-bold text-textcolor py-2 ml-8">
             Your Date Idea
@@ -113,7 +113,7 @@
             <div class="form-check form-check-inline">
               <input
                 type="radio"
-                class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-pearl checked:border-4 checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-pearl checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 name="price-options"
                 id="$"
                 value="1"
@@ -127,10 +127,11 @@
             <div class="form-check form-check-inline">
               <input
                 type="radio"
-                class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-secondary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 name="price-options"
                 id="$$"
                 value="2"
+                checked="checked"
               />
               <label
                 class="form-check-label inline-block text-textcolor"
@@ -176,7 +177,7 @@
                 class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 name="hours"
                 id="open-now"
-                value="open-now"
+                value="true"
               />
               <label
                 class="form-check-label inline-block text-textcolor"
@@ -190,7 +191,8 @@
                 class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 name="hours"
                 id="no-matter"
-                value="no-matter"
+                value="false"
+                checked="checked"
               />
               <label
                 class="form-check-label inline-block text-textcolor"
@@ -238,10 +240,11 @@
             <div class="form-check form-check-inline">
               <input
                 type="radio"
-                class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-pearl checked:border-4 checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 name="free"
                 id="no-2"
-                value="no"
+                value="1"
+                checked="checked"
               />
               <label
                 class="form-check-label inline-block text-textcolor"
@@ -255,7 +258,7 @@
                 class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-secondary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 name="free"
                 id="yes-2"
-                value="yes"
+                value="0"
               />
               <label
                 class="form-check-label inline-block text-textcolor"
@@ -290,6 +293,7 @@
                 name="accessible"
                 id="yes"
                 value="yes"
+                checked="checked"
               />
               <label
                 class="form-check-label inline-block text-textcolor"

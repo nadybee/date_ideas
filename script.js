@@ -2,7 +2,7 @@ var zipCode = 84097
 var ideas = document.querySelector(".idea")
 var restaurant = document.querySelector(".restaurant")
 var zipcodeInput= document.getElementById('zipcode')
-let zipcode=84097
+let zipcode=84097;
 let openNow = false;
 let price = 2
 
@@ -105,11 +105,13 @@ var yelpURL =  `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/busi
 // var yelpURL =  `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}`
 
 
-function buildYelpURL() {
-    var yelpURL =  `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=84097`
-//   &price=2"
+// function buildYelpURL() {
+//     var yelpURL =  `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=84097`
+// //   &price=2"
+// }
 
-}
+
+
 function fetchRestaurants() {
   var myHeaders = new Headers()
   myHeaders.append("Authorization", apiKey)
@@ -133,14 +135,28 @@ console.log( data.businesses[randomIndex].name + ' ' + data.businesses[randomInd
 
     .catch((error) => console.log("error", error))
 }
+
 // var activity = "social"
 // var minPrice = 0
 // var maxPrice = 0.1
 // var participantNum = 2
 
+function buildActivity (){
+  let actPrice =document.querySelector('input[name=free]:checked').value;
+  let participants='2';
+  let accessibility = '0.0';
+  let boredURL = `http://www.boredapi.com/api/activity?minaccessibility=${accessibility}&maxaccessibility=0.1&minprice=0&maxprice=${actPrice}&participants=${participants}`
+
+ fetchActivities(boredURL)
+
+}
+
+// buildActivity()
 /** FETCH ACTIVITY IDEA */
-function fetchActivities() {
-  fetch(`http://www.boredapi.com/api/activity/`)
+function fetchActivities(boredURL) {
+  //show spinner
+ 
+  fetch(boredURL)
     .then(function (response) {
       if (!response.ok) {
         throw Error(response.statusText)
@@ -148,6 +164,7 @@ function fetchActivities() {
       return response.json()
     })
     .then(function (data) {
+      //hide spinner
       console.log(data.activity)
       showActivity(data)
 
@@ -157,6 +174,7 @@ function fetchActivities() {
 
   //     console.log(error)
   // })
+
 }
 
 function showImg(restaurant){
@@ -178,12 +196,13 @@ function showActivity (data) {
 function doAll (event){
     event.preventDefault()
     // setZipcode()
-    fetchActivities()
+  
     fetchRestaurants()
 }
 
 function showMyDate(){ 
-fetchActivities()
+// fetchActivities()
+buildActivity()
 fetchRestaurants()
 showPage3()
 }
