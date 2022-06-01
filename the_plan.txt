@@ -47,3 +47,13 @@ displays new restaurant html
 //BACK ICON
 /*returns to previous page/
 
+
+//functions assign them to variable,
+
+run them to promise all. 
+
+create an array of promises.
+ 
+ how to handle a promise rejection
+
+ 

@@ -136,14 +136,28 @@ console.log( data.businesses[randomIndex].name + ' ' + data.businesses[randomInd
 
     .catch((error) => console.log("error", error))
 }
+
 // var activity = "social"
 // var minPrice = 0
 // var maxPrice = 0.1
 // var participantNum = 2
 
+function buildActivity (){
+  let actPrice =document.querySelector('input[name=free]:checked').value;
+  let participants='2';
+  let accessibility = '0.0';
+  let boredURL = `http://www.boredapi.com/api/activity?minaccessibility=${accessibility}&maxaccessibility=0.1&minprice=0&maxprice=${actPrice}&participants=${participants}`
+
+ fetchActivities(boredURL)
+
+}
+
+// buildActivity()
 /** FETCH ACTIVITY IDEA */
-function fetchActivities() {
-  fetch(`http://www.boredapi.com/api/activity/`)
+function fetchActivities(boredURL) {
+  //show spinner
+ 
+  fetch(boredURL)
     .then(function (response) {
       if (!response.ok) {
         throw Error(response.statusText)
@@ -151,6 +165,7 @@ function fetchActivities() {
       return response.json()
     })
     .then(function (data) {
+      //hide spinner
       console.log(data.activity)
       showActivity(data)
 
@@ -160,6 +175,7 @@ function fetchActivities() {
 
   //     console.log(error)
   // })
+
 }
 
 function showImg(restaurant){
@@ -181,12 +197,13 @@ function showActivity (data) {
 function doAll (event){
     event.preventDefault()
     // setZipcode()
-    fetchActivities()
+  
     fetchRestaurants()
 }
 
 function showMyDate(){ 
-fetchActivities()
+// fetchActivities()
+buildActivity()
 fetchRestaurants()
 showPage3()
 }
