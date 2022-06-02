@@ -81,9 +81,9 @@ function showPage4() {
   page3Cont.classList.add("hidden")
 }
 
-// var apiKey = "Bearer mBoDH4rsoLue6XA8D1yQxqIWgXEuXNblkFNatJOaePgeVk5YMVB_X7fRfx2UG_7WrXCweMV0rAngdQ6DPHxLHe2Iqafgb6KVc1NklA3qpGL4ucfr1f28YQLfQ8iOYnYx"
-var apiKey =
-  "Bearer HyNYhS-Wk9nc__m_elZsc3b9xAcu1I2Y0VcFoRw7XUMwWUXiwjjOAJU3jIYeFHgOyVHwGgkDE-Tcrp7k0ED2vdCXHAARiWKDylcxBQ-zm19OPXRgpRT_vt3O-1SNYnYx"
+var apiKey = "Bearer mBoDH4rsoLue6XA8D1yQxqIWgXEuXNblkFNatJOaePgeVk5YMVB_X7fRfx2UG_7WrXCweMV0rAngdQ6DPHxLHe2Iqafgb6KVc1NklA3qpGL4ucfr1f28YQLfQ8iOYnYx"
+// var apiKey =
+//   "Bearer HyNYhS-Wk9nc__m_elZsc3b9xAcu1I2Y0VcFoRw7XUMwWUXiwjjOAJU3jIYeFHgOyVHwGgkDE-Tcrp7k0ED2vdCXHAARiWKDylcxBQ-zm19OPXRgpRT_vt3O-1SNYnYx"
 // var yelpURL =  `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}`
 
 // var yelpURL =  `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}`
@@ -157,7 +157,7 @@ function fetchActivities(boredURL) {
 }
 
 function showImg(restaurant) {
-  restaurantImg.innerHTML = `<img src="${restaurant.image_url}" alt="image of food " class="w-full object-cover rounded-md" id='restaurant-img'>`
+  restaurantImg.innerHTML = `<img src="${restaurant.image_url}" alt="image of food " class="w-full object-cover rounded-md" id='restaurant-pic'>`
 }
 
 function showInfo(restaurant) {
@@ -173,7 +173,9 @@ function showActivity(data) {
 
 //STORE SAVED DATES
 function dateHistory() {
-  let restaurantImage = document.getElementById("restaurant-img").getAttribute('src')
+  renderDates()
+  showSavedDates()
+  let restaurantImage = document.getElementById("restaurant-pic").getAttribute('src')
   let storedDate = {
     name: document.getElementById("restaurant-name").innerText,
     image: restaurantImage,
@@ -185,8 +187,7 @@ function dateHistory() {
     JSON.stringify(storedDate)
   )
   console.log(storedDate)
-  renderDates()
-  showSavedDates()
+  
 }
 //RENDER DATES FROM LOCAL STORAGE
 function renderDates () {
@@ -205,24 +206,22 @@ function showSavedDates (){
   let dateCards = document.getElementById('cards')
   for (let i=0; i<datesToShow.length; i++){
     datesHTML.push (
-      ` <div class="grid grid-cols-3 gap-2 mx-2 mb-5 h-24 bg-pearl rounded-md">
-      <div class="">
-        <img src=${datesToShow[i].image} alt"food image" class="w-25">
+      `   <a href="#" class="flex items-center bg-white rounded-lg border shadow-md hover:bg-gray-100  ">
+      <img class="object-cover w-1/3 h-32 rounded-t-lg" src="./assets/fat japan.jpg" alt="">
+      <div class="flex flex-col justify-between p-4 leading-normal">
+          <h5 class="mb-2 text-xl font-bold tracking-tight text-textcolor">${datesToShow[i].name}</h5>
+          <p class="mb-3 font-normal text-textcolor">${datesToShow[i].storedActivity}</p>
       </div>
-      <div
-        class="col-span-2"
-      >
-       <h3> ${datesToShow[i].name}</h3>
-       <p> ${datesToShow[i].storedActivity}</p>
-      </div>`
+  </a>`
+    
     )
   }
-  // if (datesHTML.length>0){
-  //   dateCards.innerHTML = datesHTML.join('')
-  // }
-  // else {
-  //   dateCards.innerHTML =  `<h3> No dates saved yet!</h3>`
-  // }
+  if (datesHTML.length>0){
+    dateCards.innerHTML = datesHTML.join('')
+  }
+  else {
+    dateCards.innerHTML =  `<h3> No dates saved yet!</h3>`
+  }
 }
 function showMyDate() {
   buildActivity()
@@ -246,6 +245,6 @@ planDate.addEventListener("click", showMyDate)
 back2.addEventListener("click", showPage2)
 save.addEventListener("click", onSave)
 returnHome.addEventListener("click", showPage1)
-savedDates.addEventListener("click", showPage4)
+savedDates.addEventListener("click", onSave)
 homeIcon.addEventListener("click", showPage1)
 backIcon.addEventListener("click", showPage1)
