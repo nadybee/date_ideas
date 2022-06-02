@@ -1,4 +1,4 @@
-var zipCode = 84097
+
 var ideas = document.querySelector(".idea")
 var restaurant = document.querySelector(".restaurant")
 var zipcodeInput = document.getElementById("zipcode")
@@ -15,7 +15,7 @@ var save = document.getElementById("save")
 var returnHome = document.getElementById("return-home")
 var homeIcon = document.getElementById("home-icon")
 var backIcon = document.querySelector(".fa-angle-left")
-
+var cards = document.getElementById('cards')
 /**PAGES CONTAINERS AND HEADERS */
 var page1Header = document.getElementById("page1-header")
 var page1Cont = document.getElementById("page-one")
@@ -44,6 +44,7 @@ function showPage1() {
   page3Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
+  zipcodeInput.value= ''
 }
 
 function showPage2() {
@@ -55,7 +56,7 @@ function showPage2() {
   page3Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
-  people.value = ""
+  // people.value = ""
 }
 
 function showPage3() {
@@ -87,13 +88,13 @@ var apiKey = "Bearer mBoDH4rsoLue6XA8D1yQxqIWgXEuXNblkFNatJOaePgeVk5YMVB_X7fRfx2
 // var yelpURL =  `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}`
 
 // var yelpURL =  `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}`
-
+let yelpURL;
 function buildYelpURL() {
   let zipcode = zipcodeInput.value
   let price = document.querySelector("input[name=price-options]:checked").value
   let open = document.querySelector("input[name=hours]:checked").value
 
-  var yelpURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}&open_now=${open}`
+  yelpURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}&open_now=${open}`
   fetchRestaurants(yelpURL)
 }
 function fetchRestaurants(yelpURL) {
@@ -125,15 +126,16 @@ function fetchRestaurants(yelpURL) {
       console.log("error", error)
     })
 }
-
+let boredURL;
 function buildActivity() {
   let actPrice = document.querySelector("input[name=free]:checked").value
-  let participants = people.value
+  // let participants = people.value
   let accessibility = "0.0"
-  let boredURL = `http://www.boredapi.com/api/activity?minaccessibility=0&maxaccessibility=${accessibility}&minprice=0&maxprice=${actPrice}&participants=${participants}`
+  boredURL = `http://www.boredapi.com/api/activity?minaccessibility=0&maxaccessibility=${accessibility}&minprice=0&maxprice=${actPrice}`
 
   fetchActivities(boredURL)
 }
+http://www.boredapi.com/api/activity?minaccessibility=0&maxaccessibility=0&minprice=0&maxprice=1&participants=4`
 
 /** FETCH ACTIVITY IDEA */
 function fetchActivities(boredURL) {
@@ -162,12 +164,23 @@ function showImg(restaurant) {
 
 function showInfo(restaurant) {
   restaurantInfo.innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name"> ${restaurant.name}</h3>
-    <p class="md:text-xl"> ${restaurant.location.display_address}</p>
-    <p class="md:text-xl">${restaurant.phone}</p>`
+    <p class="md:text-xl" id="restaurant-address"> ${restaurant.location.display_address} </p>
+    <p class="md:text-xl" id="restaurant-phone">${restaurant.phone} </p>`
 }
 
 function showActivity(data) {
   activity.innerHTML = `<h3 class="text-xl text-textcolor font-bold text-center w-full mx-2 my-auto md:text-2xl" id="shown-activity"> ${data.activity}</h3>`
+}
+
+
+/** functions to change the date */
+
+function getNewRestaurant() {
+  fetchRestaurants(yelpURL)
+}
+
+function getNewActivity () {
+  fetchActivities(boredURL)
 }
 /** date history to local storage functions */
 
@@ -175,11 +188,13 @@ function showActivity(data) {
 function dateHistory() {
   renderDates()
   showSavedDates()
-  let restaurantImage = document.getElementById("restaurant-pic").getAttribute('src')
+  let restaurantImage = document.getElementById("restaurant-pic").src
   let storedDate = {
     name: document.getElementById("restaurant-name").innerText,
     image: restaurantImage,
     storedActivity: document.getElementById("shown-activity").innerText,
+    storedAddress: document.getElementById("restaurant-address").innerText,
+    storedPhone: document.getElementById("restaurant-phone").innerText
   }
 
   localStorage.setItem(
@@ -206,8 +221,8 @@ function showSavedDates (){
   let dateCards = document.getElementById('cards')
   for (let i=0; i<datesToShow.length; i++){
     datesHTML.push (
-      `   <a href="#" class="flex items-center bg-white rounded-lg border shadow-md hover:bg-gray-100  ">
-      <img class="object-cover w-1/3 h-32 rounded-t-lg" src="./assets/fat japan.jpg" alt="">
+      `   <a href="#" class="flex items-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 ">
+      <img class="object-cover w-1/3 h-32 rounded-t-lg" src="${datesToShow[i].image}" alt="">
       <div class="flex flex-col justify-between p-4 leading-normal">
           <h5 class="mb-2 text-xl font-bold tracking-tight text-textcolor">${datesToShow[i].name}</h5>
           <p class="mb-3 font-normal text-textcolor">${datesToShow[i].storedActivity}</p>
@@ -222,6 +237,12 @@ function showSavedDates (){
   else {
     dateCards.innerHTML =  `<h3> No dates saved yet!</h3>`
   }
+}
+
+function savedRestaurant(event) {
+  var storage = renderDates()
+  console.log(event.target)
+  console.log(storage)
 }
 function showMyDate() {
   buildActivity()
@@ -248,3 +269,6 @@ returnHome.addEventListener("click", showPage1)
 savedDates.addEventListener("click", onSave)
 homeIcon.addEventListener("click", showPage1)
 backIcon.addEventListener("click", showPage1)
+newRestaurant.addEventListener('click', getNewRestaurant)
+newActivity.addEventListener('click', getNewActivity)
+cards.addEventListener('click',savedRestaurant)

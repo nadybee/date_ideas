@@ -1,59 +1,33 @@
-issues: 
-cors with yelp fetch
-cdn with tailwind
+TO DO:
 
-// create variable for zipcode value
 //check valid zipcode
 //regex
 //UI warning if bad zipcode
 
-/*variable for spend
-default $$
-change the variable */
+//improve fonts and colors
 
-/*variable for open
-default doesn't
-change the variable */
+// center buttons on large screens
 
-//NEXT BUTTON
-/*set fetch YELP URL
-goes to next page */
+// formating for larger screens
 
-//PLAN DATE BUTTON
+//newest saved date rended to page
 
-/*set url for bored api
-fetch yelp api
-fetch bored api
-create HTML for random restaurant 
-create HTML for random activity
-goes to third page showing above HTML
-*/ 
+//click to see saved activity
 
-//GIVE ME A NEW RESTAURANT 
-/* uses same URl and fetches a new random restaurant
-creates HTML
-displays new html
-*/
+//format images to be universal
 
-//GIVE ME A NEW ACTIVITY
-/* uses same URl and fetches a new random activity
-creates restaurant HTML
-displays new restaurant html
-*/
+// error message from line 191 (saving image to local storage)
 
-//BACK BUTTON
-/*returns home*/
+//scrolling up to go above buttons
 
-//BACK ICON
-/*returns to previous page/
+//format phone number
 
+Extra features if we have time:
+//figure out promises to do a 'loading' spinner
+    (run them to promise all. 
+    create an array of promises.
+    how to handle a promise rejection)
 
-//functions assign them to variable,
-
-run them to promise all. 
-
-create an array of promises.
- 
- how to handle a promise rejection
+//link restaurant address to load in google maps
 
  
