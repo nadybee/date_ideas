@@ -38,7 +38,7 @@
         <div class="flex justify-between pt-2 md:w-4/6 md:mx-auto md:pt-5">
           <h1 class="text-3xl font-bold text-white py-2 ml-4">PLAN MY DATE</h1>
           <i
-            class="fa-solid fa-book-heart text-primary p-2 pr-6 mr-4 text-3xl md:pt-4"
+            class="fa-solid fa-book-heart text-primary p-2 pr-6 mr-4 text-3xl md:pt-4 md:text-4xl"
           ></i>
         </div>
         <h3
@@ -94,7 +94,7 @@
 
     <body class="md:bg-pearl">
       <!-- PAGE ONE CONTAINER PICK RESTAURANT PARAMS -->
-      <div id="page-one" class="md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5">
+      <div id="page-one" class="md:w-4/6 md:mx-auto md:bg-white md:p-6">
         <div class="container flex flex-col">
           <h2
             class="text-2xl text-secondary font-bold text-center justify-center mt-6 mb-5"
@@ -119,7 +119,7 @@
             How much do you want to spend?
           </h3>
 
-          <div class="flex justify-between mx-5 mt-4 text-xl mb-7">
+          <div class="flex justify-between mx-5 mt-4 text-xl mb-7 lg:w-3/4 lg:mx-auto lg:mt-6">
             <div class="form-check form-check-inline">
               <input
                 type="radio"
@@ -134,7 +134,7 @@
                 >$</label
               >
             </div>
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline ">
               <input
                 type="radio"
                 class="form-check-input form-check-input appearance-none rounded-full h-5 w-5 border border-primary bg-pearl checked:bg-primary checked:border-primary focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
@@ -180,7 +180,7 @@
           </div>
 
           <h3 class="text-xl font-bold mt-5 ml-4">Do you want to go now?</h3>
-          <div class="flex justify-evenly mx-4 mt-4 text-xl" id="hours">
+          <div class="flex justify-evenly mx-4 mt-4 text-xl lg:mt-6" id="hours">
             <div class="form-check form-check-inline">
               <input
                 type="radio"
@@ -211,9 +211,9 @@
               >
             </div>
           </div>
-          <div class="fixed bottom-0 w-full md:relative mt-5">
+          <div class="fixed bottom-0 w-full md:relative mt-5 bg-white pt-2">
             <button
-              class="bg-primary text-white text-xl font-bold p-3 w-5/6 rounded-md mx-8 my-6"
+              class=" bg-primary text-white text-xl font-bold p-3 w-5/6 rounded-md mx-8 my-6 md:w-3/4 md:align-middle"
               id="next"
             >
               next
@@ -317,7 +317,7 @@
               >
             </div>
           </div>
-          <div class="flex fixed bottom-0 w-full md:relative mt-10">
+          <div class="flex fixed bottom-0 w-full md:relative mt-10 bg-white pt-2">
             <button
               class="border-2 border-primary bg-white text-primary text-xl font-bold p-3 w-2/6 rounded-md my-6 ml-3"
               id="back-1"
@@ -379,7 +379,7 @@
           >
             find me a new activity
           </button>
-          <div class="flex fixed bottom-0 w-full md:relative mt-5">
+          <div class="flex fixed bottom-0 w-full md:relative mt-5 bg-white pt-2">
             <button
               class="border-2 border-primary bg-white text-primary text-xl font-bold p-3 w-2/6 rounded-md my-6 ml-3"
               id="back-2"
@@ -400,22 +400,21 @@
         id="page-four"
         class="hidden md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5"
       >
-        <div class="container">
-          <div id="cards" class="flex flex-col mt-5">
-             <div class="grid grid-cols-3 gap-2 mx-2 mb-5 h-24 bg-pearl rounded-md">
-              <div class="">
-                <img src="/assets/fat japan.jpg" alt ="food image" class="w-full object-cover rounded-md">
-              </div>
-              <div
-                class="col-span-2 flex "
-              >
-               <h3 class="text-xl font-bold"> ${datesToShow[i].name}</h3>
-               <p> ${datesToShow[i].storedActivity}</p>
-              </div>
-          </div>
+   
+        <div id="cards" class="mt-5"> 
+      <a href="#" class="flex items-center bg-white rounded-lg border shadow-md hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+        <img class="object-cover w-1/3 h-32 rounded-t-lg" src="./assets/fat japan.jpg" alt="">
+        <div class="flex flex-col justify-between p-4 leading-normal">
+            <h5 class="mb-2 text-xl font-bold tracking-tight text-textcolor">${datesToShow[i].name}</h5>
+            <p class="mb-3 font-normal text-textcolor">${datesToShow[i].storedActivity}</p>
         </div>
+    </a>
+  </div>    
+              
+            
+       
 
-        <div class="fixed bottom-0 w-full md:relative mt-5">
+        <div class="fixed bottom-0 w-full md:relative mt-5 bg-white pt-2">
           <button
             class="bg-primary text-white text-xl font-bold p-3 w-5/6 rounded-md ml-7 mr-8 my-6"
             id="return-home"
@@ -424,6 +423,7 @@
           </button>
         </div>
       </div>
+      
     </body>
     <script src="./script.js"></script>
   </body>
