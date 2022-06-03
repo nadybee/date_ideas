@@ -10,6 +10,8 @@ TO DO:
 
 // formating for larger screens
 
+//format images universal
+
 //newest saved date rended to page
 
 //click to see saved activity
@@ -18,7 +20,7 @@ TO DO:
 
 // error message from line 191 (saving image to local storage)
 
-//scrolling up to go above buttons
+
 
 //format phone number
 
