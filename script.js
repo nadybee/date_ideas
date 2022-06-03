@@ -219,6 +219,8 @@ function dateHistory() {
     JSON.stringify(storedDate)
   )
   console.log(storedDate)
+  renderDates()
+  showSavedDates()
 }
 //RENDER DATES FROM LOCAL STORAGE
 function renderDates() {
@@ -234,24 +236,20 @@ function renderDates() {
 function showSavedDates() {
   const datesToShow = renderDates()
   let datesHTML = []
-  let dateCards = document.getElementById('cards')
-  for (let i = 0; i < datesToShow.length; i++) {
-    datesHTML.push(
-      `   <a href="#" class="flex items-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 ">
-      <img class="object-cover w-1/3 h-32 rounded-t-lg" src="${datesToShow[i].image}" alt="">
-      <div class="flex flex-col justify-between p-4 leading-normal">
-          <h5 class="mb-2 text-xl font-bold tracking-tight text-textcolor">${datesToShow[i].name}</h5>
-          <p class="mb-3 font-normal text-textcolor">${datesToShow[i].storedActivity}</p>
-      </div>
-  </a>`
+  let dateCards = document.getElementById("cards")
 
+  for (let i = 0; i < datesToShow.length; i++) {
+    var restaurant = generateRestaurant(
+      datesToShow[i].image,
+      datesToShow[i].name,
+      datesToShow[i].storedActivity
     )
     datesHTML.push(restaurant)
   }
+
   if (datesHTML.length > 0) {
-    dateCards.innerHTML = datesHTML.join('')
-  }
-  else {
+    dateCards.innerHTML = datesHTML.join("")
+  } else {
     dateCards.innerHTML = `<h3> No dates saved yet!</h3>`
   }
 }
@@ -265,6 +263,7 @@ function generateRestaurant(image, restName, activity) {
   </div>
 </a>`
 }
+
 function savedRestaurant(event) {
   var storage = renderDates()
   console.log(event.target)
