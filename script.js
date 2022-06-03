@@ -143,7 +143,7 @@ function fetchRestaurants(yelpURL) {
       //   }
       // }
       console.log("error", error)
-      document.getElementById("restaurant-info").innerHTML = `<p class=p-5 text-orange-700> there was an error, click back and try again</p>`;
+      document.getElementById("restaurant-info").innerHTML = `<p class="p-5 text-orange-700"> there was an error, click back and try again</p>`;
 
     })
 }
@@ -244,7 +244,9 @@ function showSavedDates() {
     var restaurant = generateRestaurant(
       datesToShow[i].image,
       datesToShow[i].name,
-      datesToShow[i].storedActivity
+      datesToShow[i].storedActivity,
+      datesToShow[i].storedAddress,
+      datesToShow[i].storedPhone
     )
     datesHTML.push(restaurant)
   }
@@ -256,12 +258,14 @@ function showSavedDates() {
   }
 }
 // data-restuarant-name= "${datesToShow[i].phone}"
-function generateRestaurant(image, restName, activity) {
+function generateRestaurant(image, restName, activity,address,phone) {
   return `   <a href="#" class="flex items-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 ">
   <img class="object-cover w-1/3 h-32 rounded-t-lg" src="${image}" alt="">
   <div class="flex flex-col justify-between p-4 leading-normal">
       <h5 class="mb-2 text-xl font-bold tracking-tight text-textcolor">${restName}</h5>
       <p class="mb-3 font-normal text-textcolor">${activity}</p>
+      <p class ="hidden"> ${address}</p>
+      <p class="hidden"> ${phone}</p>
   </div>
 </a>`
 }
@@ -280,6 +284,7 @@ function restaurantCreator() {
   showPage2()
   buildYelpURL()
 }
+
 function nextPage(){
   
 }
@@ -287,6 +292,12 @@ function nextPage(){
 function onSave() {
   showPage4()
   dateHistory()
+}
+
+function onFavoritesIcon(){
+  showPage4()
+  renderDates()
+  showSavedDates()
 }
 function isUSAZipCode(str) 
 {
@@ -312,7 +323,7 @@ planDate.addEventListener("click", showMyDate)
 back2.addEventListener("click", showPage2)
 save.addEventListener("click", onSave)
 returnHome.addEventListener("click", showPage1)
-savedDates.addEventListener("click", onSave)
+savedDates.addEventListener("click", onFavoritesIcon)
 homeIcon.addEventListener("click", showPage1)
 backIcon.addEventListener("click", showPage1)
 newRestaurant.addEventListener('click', getNewRestaurant)
