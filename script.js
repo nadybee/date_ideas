@@ -122,6 +122,7 @@ function fetchRestaurants(yelpURL) {
           " " +
           data.businesses[randomIndex].location.display_address
       )
+      console.log(data.businesses[randomIndex])
       showImg(data.businesses[randomIndex])
       showInfo(data.businesses[randomIndex])
     })
@@ -190,8 +191,7 @@ function getNewActivity() {
 
 //STORE SAVED DATES
 function dateHistory() {
-  renderDates()
-  showSavedDates()
+ 
   let restaurantImage = document.getElementById("restaurant-pic").src
   let storedDate = {
     name: document.getElementById("restaurant-name").innerText,
@@ -206,6 +206,8 @@ function dateHistory() {
     JSON.stringify(storedDate)
   )
   console.log(storedDate)
+  renderDates()
+  showSavedDates()
 }
 //RENDER DATES FROM LOCAL STORAGE
 function renderDates() {
@@ -259,7 +261,7 @@ function showMyDate() {
 }
 
 function restaurantCreator() {
-  // showPage2()
+  showPage2()
   buildYelpURL()
 }
 function nextPage(){

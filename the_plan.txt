@@ -31,5 +31,8 @@ Extra features if we have time:
     how to handle a promise rejection)
 
 //link restaurant address to load in google maps
+https://developers.google.com/maps/documentation/urls/get-started
 
- 
+ https://www.google.com/maps/search/?api=1&granville&query=34.0771299%2C-118.38068
+
+coordinates: {latitude: 34.0771299, longitude: -118.38068}
