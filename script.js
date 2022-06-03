@@ -136,13 +136,15 @@ function fetchRestaurants(yelpURL) {
 
     .catch((error) => {
       // display error for user
-      function validate() {
-        if (document.regform.fName.value.length == '0') {
-          document.getElementById("error").innerHTML = "error";
-          return false;
-        }
-      }
+      // function validate() {
+      //   if (document.regform.fName.value.length == '0') {
+      //     document.getElementById("restaurant-info").innerHTML = `<p class=p-5> there was an error, check your zipcode and try again</p>`;
+      //     return false;
+      //   }
+      // }
       console.log("error", error)
+      document.getElementById("restaurant-info").innerHTML = `<p class=p-5 text-orange-700> there was an error, click back and try again</p>`;
+
     })
 }
 let boredURL
@@ -298,7 +300,7 @@ function validateInput()
   let message = "";
   if (!isUSAZipCode(zipCode)) 
   {
-    message = "Invalid Zip Code";
+    message = 'Invalid zipcode please try again';
   }
   document.getElementById("msg").innerHTML = message;
 }
