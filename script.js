@@ -44,7 +44,7 @@ function showPage1() {
   page3Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
-  zipcodeInput.value= ''
+  zipcodeInput.value = ''
 }
 
 function showPage2() {
@@ -105,7 +105,7 @@ function fetchRestaurants(yelpURL) {
   var requestOptions = {
     headers: myHeaders,
   }
-
+  
   fetch(yelpURL, requestOptions)
     .then((response) => response.json())
     .then(function (data) {
@@ -114,8 +114,8 @@ function fetchRestaurants(yelpURL) {
 
       console.log(
         data.businesses[randomIndex].name +
-          " " +
-          data.businesses[randomIndex].location.display_address
+        " " +
+        data.businesses[randomIndex].location.display_address
       )
       showImg(data.businesses[randomIndex])
       showInfo(data.businesses[randomIndex])
@@ -123,6 +123,12 @@ function fetchRestaurants(yelpURL) {
 
     .catch((error) => {
       // display error for user
+      function validate() {
+        if (document.regform.fName.value.length == '0') {
+          document.getElementById("error").innerHTML = "error";
+          return false;
+        }
+      }
       console.log("error", error)
     })
 }
@@ -179,7 +185,7 @@ function getNewRestaurant() {
   fetchRestaurants(yelpURL)
 }
 
-function getNewActivity () {
+function getNewActivity() {
   fetchActivities(boredURL)
 }
 /** date history to local storage functions */
@@ -202,12 +208,12 @@ function dateHistory() {
     JSON.stringify(storedDate)
   )
   console.log(storedDate)
-  
+
 }
 //RENDER DATES FROM LOCAL STORAGE
-function renderDates () {
-  let allDates=[]
-  for(let i=0; i<localStorage.length; i++){
+function renderDates() {
+  let allDates = []
+  for (let i = 0; i < localStorage.length; i++) {
     allDates.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
   }
   return allDates
@@ -215,12 +221,12 @@ function renderDates () {
 
 //SHOW DATES FROM LOCAL STORAGE
 
-function showSavedDates (){
+function showSavedDates() {
   const datesToShow = renderDates()
-  let datesHTML =[]
+  let datesHTML = []
   let dateCards = document.getElementById('cards')
-  for (let i=0; i<datesToShow.length; i++){
-    datesHTML.push (
+  for (let i = 0; i < datesToShow.length; i++) {
+    datesHTML.push(
       `   <a href="#" class="flex items-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 ">
       <img class="object-cover w-1/3 h-32 rounded-t-lg" src="${datesToShow[i].image}" alt="">
       <div class="flex flex-col justify-between p-4 leading-normal">
@@ -228,14 +234,14 @@ function showSavedDates (){
           <p class="mb-3 font-normal text-textcolor">${datesToShow[i].storedActivity}</p>
       </div>
   </a>`
-    
+
     )
   }
-  if (datesHTML.length>0){
+  if (datesHTML.length > 0) {
     dateCards.innerHTML = datesHTML.join('')
   }
   else {
-    dateCards.innerHTML =  `<h3> No dates saved yet!</h3>`
+    dateCards.innerHTML = `<h3> No dates saved yet!</h3>`
   }
 }
 
@@ -258,6 +264,22 @@ function onSave() {
   showPage4()
   dateHistory()
 }
+function isUSAZipCode(str) 
+{
+  return /^\d{5}(-\d{4})?$/.test(str);
+}
+
+function validateInput() 
+{
+  console.log("validateInput");
+  let zipCode = document.getElementById("zipcode").value;
+  let message = "";
+  if (!isUSAZipCode(zipCode)) 
+  {
+    message = "Invalid Zip Code";
+  }
+  document.getElementById("msg").innerHTML = message;
+}
 
 /** EVENT LISTENERS */
 next.addEventListener("click", restaurantCreator)
@@ -271,4 +293,5 @@ homeIcon.addEventListener("click", showPage1)
 backIcon.addEventListener("click", showPage1)
 newRestaurant.addEventListener('click', getNewRestaurant)
 newActivity.addEventListener('click', getNewActivity)
-cards.addEventListener('click',savedRestaurant)
+cards.addEventListener('click', savedRestaurant)
+

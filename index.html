@@ -110,9 +110,13 @@
 
             <input
               type="text"
-              class="border-primary border h-8 w-32 bg-pearl rounded placeholder: pl-2 input: pl-2"
+              class="border-primary border h-8 w-32 bg-pearl rounded placeholder: pl-2 input: pl-2" 
               id="zipcode"
+              onKeyUp="validateInput()"
             />
+          </div>
+          <div id="msg"
+            class="text-orange-700 ml-5" >
           </div>
 
           <h3 class="text-textcolor text-xl font-semibold mr-5 mt-7 ml-4">
@@ -352,7 +356,7 @@
               id="restaurant-info"
               class="col-span-2 bg-pearl rounded-md p-3 md:p-8"
             >
-              loading...
+            Invalid Zip Code
             </div>
           </div>
           <button
