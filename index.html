@@ -215,9 +215,10 @@
               >
             </div>
           </div>
-          <div class="fixed bottom-0 w-full md:relative mt-5 bg-white pt-2">
+          <div class="absolute bottom-0 w-full ">
+          <!-- <div class="fixed bottom-0  w-full justify-items-center "> -->
             <button
-              class=" bg-primary text-white text-xl font-bold p-3 w-5/6 rounded-md mx-8 my-6 md:w-3/4 md:align-middle"
+              class=" bg-primary text-white text-xl font-bold p-3 w-5/6 md:w-4/6 rounded-md "
               id="next"
             >
               next
@@ -402,10 +403,11 @@
       <!-- PAGE FOUR CONTAINER SAVED DATES-->
       <div
         id="page-four"
-        class="hidden md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5"
+        class=" hidden md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5"
+      
       >
    
-        <div id="cards" class="mt-5"> 
+        <div id="cards" class="mt-5 mb-32"> 
       <a href="#" class="flex items-center bg-white rounded-lg border shadow-md hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
         <img class="object-cover w-1/3 h-32 rounded-t-lg" src="./assets/fat japan.jpg" alt="">
         <div class="flex flex-col justify-between p-4 leading-normal">
@@ -427,7 +429,54 @@
           </button>
         </div>
       </div>
+      <!-- PAGE FIVE CONTAINER SEE SAVED RESULTS -->
+      <div
+      id="page-five"
+      class="hidden md:w-4/6 md:mx-auto md:bg-white md:p-6 md:mt-5"
+    >
+      <div class="container">
+        <h2
+          class="text-2xl md:text-3xl text-secondary font-bold ml-2 mt-8 mb-3 md:mb-5"
+        >
+          RESTAURANT
+        </h2>
+        <div
+          class="grid grid-cols-3 gap-2 mx-2 mb-5 flex justify-content-center content-center"
+        >
+          <div id="saved=restaurant-img" class=""></div>
+          <div
+            id="restaurant-info"
+            class="col-span-2 bg-pearl rounded-md p-3 md:p-8"
+          >
+            loading...
+          </div>
+        </div>
       
+        <div class="flex-grow border-t-8 border-pearl w-full"></div>
+        <h2
+          class="text-2xl text-secondary font-bold ml-2 mt-4 mb-3 md:text-3xl md:mb-5"
+        >
+          ACTIVITY
+        </h2>
+        <div
+          id="saved-activity"
+          class="flex rounded-md w-5/6 mx-8 h-40 bg-pearl justify-content-center content-center"
+        >
+          loading ...
+        </div>
+       
+        <div class="flex fixed bottom-0 w-full md:relative mt-5 bg-white pt-2">
+          <button
+            class="border-2 border-primary bg-white text-primary text-xl font-bold p-3 w-2/6 rounded-md my-6 ml-3"
+            id="return-home-two"
+          >
+            return home
+          </button>
+        
+        </div>
+      </div>
+    </div>
+
     </body>
     <script src="./script.js"></script>
   </body>

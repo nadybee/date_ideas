@@ -10,6 +10,8 @@ TO DO:
 
 // formating for larger screens
 
+//format images universal
+
 //newest saved date rended to page
 
 //click to see saved activity
@@ -18,7 +20,7 @@ TO DO:
 
 // error message from line 191 (saving image to local storage)
 
-//scrolling up to go above buttons
+
 
 //format phone number
 
@@ -29,7 +31,8 @@ Extra features if we have time:
     how to handle a promise rejection)
 
 //link restaurant address to load in google maps
+https://developers.google.com/maps/documentation/urls/get-started
 
- Show an error if they type the wrong zip code 
- If error show error message
- 
+ https://www.google.com/maps/search/?api=1&granville&query=34.0771299%2C-118.38068
+
+coordinates: {latitude: 34.0771299, longitude: -118.38068}
