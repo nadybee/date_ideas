@@ -56,4 +56,6 @@ create an array of promises.
  
  how to handle a promise rejection
 
+ Show an error if they type the wrong zip code 
+ If error show error message
  
