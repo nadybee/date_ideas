@@ -106,15 +106,16 @@ function fetchRestaurants(yelpURL) {
     .then(function (data) {
       console.log(data)
       let randomIndex = Math.floor(Math.random() * data.businesses.length)
-
-      console.log(
-        data.businesses[randomIndex].name +
-          " " +
-          data.businesses[randomIndex].location.display_address
-      )
-      console.log(data.businesses[randomIndex])
+      // console.log(
+      //   data.businesses[randomIndex].name +
+      //     " " +
+      //     data.businesses[randomIndex].location.display_address
+      // )
+      // console.log(data.businesses[randomIndex])
+     
       showImg(data.businesses[randomIndex])
       showInfo(data.businesses[randomIndex])
+    
     })
 
     .catch((error) => {
@@ -136,6 +137,7 @@ function buildYelpURL() {
   let open = document.querySelector("input[name=hours]:checked").value
   yelpURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}&open_now=${open}`
   fetchRestaurants(yelpURL)
+  
 }
 
 //FOR BORED API
@@ -175,17 +177,19 @@ function buildActivity() {
 
 /** DISPLAY RANDOM RESTAURANT AND ACTIVITY TO DOM */
 function showImg(restaurant) {
-  restaurantImg.innerHTML = `<img src="${restaurant.image_url}" alt="image of food " class="w-full object-cover rounded-md" id='restaurant-pic'>`
+  restaurantImg.innerHTML = `<img src="${restaurant.image_url}" alt="image of food " class="w-32 h-32 md:h-56 md:w-56 object-cover rounded-md " id='restaurant-pic'>`
 }
 
 function showInfo(restaurant) {
+   buildMapsURL(restaurant)
   restaurantInfo.innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name"> ${restaurant.name}</h3>
-    <p class="md:text-xl" id="restaurant-address"> ${restaurant.location.display_address} </p>
-    <p class="md:text-xl" id="restaurant-phone">${restaurant.phone} </p>`
+  
+  <a href=${googleURL} class="text-decoration-line: underline text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${restaurant.location.display_address} </p></a>
+    <p class="md:text-xl" id="restaurant-phone">${restaurant.display_phone} </p>`
 }
 
 function showActivity(data) {
-  activity.innerHTML = `<h3 class="text-xl text-textcolor font-bold text-center w-full mx-2 my-auto md:text-2xl" id="shown-activity"> ${data.activity}</h3>`
+  activity.innerHTML = `<h3 class="text-xl text-textcolor font-bold text-center w-full  mx-2 my-auto md:text-2xl" id="shown-activity"> ${data.activity}</h3>`
 }
 
 /** functions to change the date */
@@ -199,7 +203,14 @@ function getNewActivity() {
 }
 
 /** date history to local storage functions */
+let googleURL;
+function buildMapsURL(restaurant){
 
+  let restName= restaurant.name.replaceAll(' ','+')
+  let restAddress= restaurant.location.display_address.toString().replaceAll(' ','+')
+   googleURL =  `https://www.google.com/maps/search/?api=1&query=${restName}+${restAddress}`
+  return googleURL
+}
 //STORE SAVED DATES
 function dateHistory() {
   let restaurantImage = document.getElementById("restaurant-pic").src
@@ -254,8 +265,8 @@ function showSavedDates() {
 }
 
 function generateRestaurant(image, restName, activity, address, phone) {
-  return `   <a href="#" class="flex items-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 ">
-  <img class="object-cover w-1/3 h-32 rounded-t-lg" src="${image}" alt="">
+  return `   <a href="#" class="flex items-center align-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 mx-1">
+  <img class="object-cover w-1/3 h-32 rounded-l-md aspect-square" src="${image}" alt="">
   <div class="flex flex-col justify-between p-4 leading-normal">
       <h5 class="mb-2 text-xl font-bold tracking-tight text-textcolor">${restName}</h5>
       <p class="mb-3 font-normal text-textcolor">${activity}</p>
