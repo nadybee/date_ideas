@@ -182,7 +182,8 @@ function showImg(restaurant) {
 
 function showInfo(restaurant) {
    buildMapsURL(restaurant)
-  restaurantInfo.innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name"> ${restaurant.name}</h3>
+  restaurantInfo.innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name" "> ${restaurant.name}</h3>
+  <span class="hidden" id="restaurant-id"> ${restaurant.id} </span>
   
   <a href=${googleURL} class="text-decoration-line: underline text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${restaurant.location.display_address} </p></a>
     <p class="md:text-xl" id="restaurant-phone">${restaurant.display_phone} </p>`
@@ -212,9 +213,11 @@ function buildMapsURL(restaurant){
   return googleURL
 }
 //STORE SAVED DATES
+let storedHistory= 'storedDate_';
 function dateHistory() {
   let restaurantImage = document.getElementById("restaurant-pic").src
   let storedDate = {
+    id: document.getElementById('restaurant-id').innerText,
     name: document.getElementById("restaurant-name").innerText,
     image: restaurantImage,
     storedActivity: document.getElementById("shown-activity").innerText,
@@ -223,7 +226,7 @@ function dateHistory() {
   }
 
   localStorage.setItem(
-    `storedDate_${storedDate.name}`,
+   storedHistory+ storedDate.id,
     JSON.stringify(storedDate)
   )
   console.log(storedDate)
@@ -270,15 +273,17 @@ function generateRestaurant(image, restName, activity, address, phone) {
   <div class="flex flex-col justify-between p-4 leading-normal">
       <h5 class="mb-2 text-xl font-bold tracking-tight text-textcolor">${restName}</h5>
       <p class="mb-3 font-normal text-textcolor">${activity}</p>
-      <p class ="hidden"> ${address}</p>
+      <p class="hidden"> ${address}</p>
       <p class="hidden"> ${phone}</p>
+    
+    
   </div>
 </a>`
 }
 
 function savedRestaurant(event) {
   var storage = renderDates()
-  console.log(event.target)
+  console.log(event)
   console.log(storage)
 }
 function showMyDate() {
