@@ -1,9 +1,5 @@
 TO DO:
 
-//check valid zipcode
-//regex
-//UI warning if bad zipcode
-
 //improve fonts and colors
 
 // center buttons on large screens
@@ -12,23 +8,16 @@ TO DO:
 
 //format images universal
 
-//newest saved date rended to page
-
 //click to see saved activity
 
 //format images to be universal
 
 // error message from line 191 (saving image to local storage)
 
-
-
 //format phone number
 
 Extra features if we have time:
-//figure out promises to do a 'loading' spinner
-    (run them to promise all. 
-    create an array of promises.
-    how to handle a promise rejection)
+
 
 //link restaurant address to load in google maps
 https://developers.google.com/maps/documentation/urls/get-started

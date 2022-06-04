@@ -44,7 +44,7 @@ function showPage1() {
   page3Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
-  zipcodeInput.value = ''
+  zipcodeInput.value = ""
 }
 
 function showPage2() {
@@ -82,33 +82,16 @@ function showPage4() {
   page3Cont.classList.add("hidden")
 }
 
-function setZipcode() {
-  if (zipcodeInput.value.length === 5) {
-    zipcode = parseInt(zipcodeInput.value)
-  } else {
-    alert("please enter a valid zipcode")
-  }
-  console.log(zipcode)
-  zipcodeInput.value = ""
-}
+/** API KEYS */
 
 // var apiKey = "Bearer mBoDH4rsoLue6XA8D1yQxqIWgXEuXNblkFNatJOaePgeVk5YMVB_X7fRfx2UG_7WrXCweMV0rAngdQ6DPHxLHe2Iqafgb6KVc1NklA3qpGL4ucfr1f28YQLfQ8iOYnYx"
 var apiKey =
   "Bearer HyNYhS-Wk9nc__m_elZsc3b9xAcu1I2Y0VcFoRw7XUMwWUXiwjjOAJU3jIYeFHgOyVHwGgkDE-Tcrp7k0ED2vdCXHAARiWKDylcxBQ-zm19OPXRgpRT_vt3O-1SNYnYx"
-// var yelpURL =  `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}`
 
-// var yelpURL =  `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}`
+/** ----------FETCH FUNCTIONS-------- */
+//FOR YELP API
 let yelpURL
 
-function buildYelpURL() {
-  let zipcode = zipcodeInput.value
-  let price = document.querySelector("input[name=price-options]:checked").value
-  let open = document.querySelector("input[name=hours]:checked").value
-
-  yelpURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}&open_now=${open}`
-  //if zipcode.length===5
-  fetchRestaurants(yelpURL)
-}
 function fetchRestaurants(yelpURL) {
   var myHeaders = new Headers()
   myHeaders.append("Authorization", apiKey)
@@ -117,7 +100,7 @@ function fetchRestaurants(yelpURL) {
   var requestOptions = {
     headers: myHeaders,
   }
-  
+
   fetch(yelpURL, requestOptions)
     .then((response) => response.json())
     .then(function (data) {
@@ -126,8 +109,8 @@ function fetchRestaurants(yelpURL) {
 
       console.log(
         data.businesses[randomIndex].name +
-        " " +
-        data.businesses[randomIndex].location.display_address
+          " " +
+          data.businesses[randomIndex].location.display_address
       )
       console.log(data.businesses[randomIndex])
       showImg(data.businesses[randomIndex])
@@ -143,24 +126,24 @@ function fetchRestaurants(yelpURL) {
       //   }
       // }
       console.log("error", error)
-      document.getElementById("restaurant-info").innerHTML = `<p class="p-5 text-orange-700"> there was an error, click back and try again</p>`;
-
+     restaurantInfo.innerHTML = `<p class="p-5 text-orange-700"> there was an error, click back and try again</p>`
     })
 }
-let boredURL
-function buildActivity() {
-  let actPrice = document.querySelector("input[name=free]:checked").value
-  // let participants = people.value
-  let accessibility = "0.0"
-  boredURL = `http://www.boredapi.com/api/activity?minaccessibility=0&maxaccessibility=${accessibility}&minprice=0&maxprice=${actPrice}`
 
-  fetchActivities(boredURL)
+function buildYelpURL() {
+  let zipcode = zipcodeInput.value
+  let price = document.querySelector("input[name=price-options]:checked").value
+  let open = document.querySelector("input[name=hours]:checked").value
+  yelpURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}&open_now=${open}`
+  fetchRestaurants(yelpURL)
 }
+
+//FOR BORED API
 //www.boredapi.com/api/activity?minaccessibility=0&maxaccessibility=0&minprice=0&maxprice=1&participants=4`
 
-/** FETCH ACTIVITY IDEA */
-http: function fetchActivities(boredURL) {
-  //show spinner
+let boredURL
+
+function fetchActivities(boredURL) {
 
   fetch(boredURL)
     .then(function (response) {
@@ -176,9 +159,21 @@ http: function fetchActivities(boredURL) {
     })
     .catch((error) => {
       console.log(error)
+      activity.innerHTML = `<p class="p-5 text-orange-700"> there was an error, click back and try again</p>`
+
     })
 }
 
+function buildActivity() {
+  let actPrice = document.querySelector("input[name=free]:checked").value
+  // let participants = people.value
+  let accessibility = "0.0"
+  boredURL = `http://www.boredapi.com/api/activity?minaccessibility=0&maxaccessibility=${accessibility}&minprice=0&maxprice=${actPrice}`
+
+  fetchActivities(boredURL)
+}
+
+/** DISPLAY RANDOM RESTAURANT AND ACTIVITY TO DOM */
 function showImg(restaurant) {
   restaurantImg.innerHTML = `<img src="${restaurant.image_url}" alt="image of food " class="w-full object-cover rounded-md" id='restaurant-pic'>`
 }
@@ -202,11 +197,11 @@ function getNewRestaurant() {
 function getNewActivity() {
   fetchActivities(boredURL)
 }
+
 /** date history to local storage functions */
 
 //STORE SAVED DATES
 function dateHistory() {
- 
   let restaurantImage = document.getElementById("restaurant-pic").src
   let storedDate = {
     name: document.getElementById("restaurant-name").innerText,
@@ -257,8 +252,8 @@ function showSavedDates() {
     dateCards.innerHTML = `<h3> No dates saved yet!</h3>`
   }
 }
-// data-restuarant-name= "${datesToShow[i].phone}"
-function generateRestaurant(image, restName, activity,address,phone) {
+
+function generateRestaurant(image, restName, activity, address, phone) {
   return `   <a href="#" class="flex items-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 ">
   <img class="object-cover w-1/3 h-32 rounded-t-lg" src="${image}" alt="">
   <div class="flex flex-col justify-between p-4 leading-normal">
@@ -285,35 +280,30 @@ function restaurantCreator() {
   buildYelpURL()
 }
 
-function nextPage(){
-  
-}
+function nextPage() {}
 
 function onSave() {
   showPage4()
   dateHistory()
 }
 
-function onFavoritesIcon(){
+function onFavoritesIcon() {
   showPage4()
   renderDates()
   showSavedDates()
 }
-function isUSAZipCode(str) 
-{
-  return /^\d{5}(-\d{4})?$/.test(str);
+function isUSAZipCode(str) {
+  return /^\d{5}(-\d{4})?$/.test(str)
 }
 
-function validateInput() 
-{
-  console.log("validateInput");
-  let zipCode = document.getElementById("zipcode").value;
-  let message = "";
-  if (!isUSAZipCode(zipCode)) 
-  {
-    message = 'Invalid zipcode please try again';
+function validateInput() {
+  console.log("validateInput")
+  let zipCode = document.getElementById("zipcode").value
+  let message = ""
+  if (!isUSAZipCode(zipCode)) {
+    message = "Invalid zipcode please try again"
   }
-  document.getElementById("msg").innerHTML = message;
+  document.getElementById("msg").innerHTML = message
 }
 
 /** EVENT LISTENERS */
@@ -326,7 +316,6 @@ returnHome.addEventListener("click", showPage1)
 savedDates.addEventListener("click", onFavoritesIcon)
 homeIcon.addEventListener("click", showPage1)
 backIcon.addEventListener("click", showPage1)
-newRestaurant.addEventListener('click', getNewRestaurant)
-newActivity.addEventListener('click', getNewActivity)
-cards.addEventListener('click', savedRestaurant)
-
+newRestaurant.addEventListener("click", getNewRestaurant)
+newActivity.addEventListener("click", getNewActivity)
+cards.addEventListener("click", savedRestaurant)
