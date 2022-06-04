@@ -15,6 +15,7 @@ var returnHome = document.getElementById("return-home")
 var homeIcon = document.getElementById("home-icon")
 var backIcon = document.querySelector(".fa-angle-left")
 var cards = document.getElementById("cards")
+var goBack= document.getElementById('go-back')
 /**PAGES CONTAINERS AND HEADERS */
 var page1Header = document.getElementById("page1-header")
 var page1Cont = document.getElementById("page-one")
@@ -44,6 +45,7 @@ function showPage1() {
   page3Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
+  page5Cont.classList.add('hidden')
   zipcodeInput.value = ""
 }
 
@@ -56,6 +58,7 @@ function showPage2() {
   page3Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
+  page5Cont.classList.add('hidden')
   // people.value = ""
 }
 
@@ -68,6 +71,7 @@ function showPage3() {
   page2Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
+  page5Cont.classList.add('hidden')
 }
 
 function showPage4() {
@@ -80,8 +84,21 @@ function showPage4() {
   page2Cont.classList.add("hidden")
   page3Header.classList.add("md:hidden")
   page3Cont.classList.add("hidden")
+  page5Cont.classList.add('hidden')
 }
 
+function showPage5(){
+  page5Cont.classList.remove('hidden')
+  page1Cont.classList.add("hidden")
+  page1Cont.classList.add("hidden")
+  page2Header.classList.add("hidden")
+  page2Cont.classList.add("hidden")
+  page3Header.classList.add("md:hidden")
+  page3Cont.classList.add("hidden")
+  page4Header.classList.add("hidden")
+  page4Cont.classList.add("hidden")
+
+}
 /** API KEYS */
 
 // var apiKey = "Bearer mBoDH4rsoLue6XA8D1yQxqIWgXEuXNblkFNatJOaePgeVk5YMVB_X7fRfx2UG_7WrXCweMV0rAngdQ6DPHxLHe2Iqafgb6KVc1NklA3qpGL4ucfr1f28YQLfQ8iOYnYx"
@@ -185,7 +202,7 @@ function showInfo(restaurant) {
   restaurantInfo.innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name" "> ${restaurant.name}</h3>
   <span class="hidden" id="restaurant-id"> ${restaurant.id} </span>
   
-  <a href=${googleURL} class="text-decoration-line: underline text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${restaurant.location.display_address} </p></a>
+  <a href=${googleURL} class="text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${restaurant.location.display_address} </p></a>
     <p class="md:text-xl" id="restaurant-phone">${restaurant.display_phone} </p>`
 }
 
@@ -268,13 +285,13 @@ function showSavedDates() {
 }
 
 function generateRestaurant(image, restName, activity, address, phone) {
-  return `   <a href="#" class="flex items-center align-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 mx-1">
+  return `   <a href="#" class="flex items-center align-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 mx-1 restaurant-card">
   <img class="object-cover w-1/3 h-32 rounded-l-md aspect-square" src="${image}" alt="">
   <div class="flex flex-col justify-between p-4 leading-normal">
-      <h5 class="mb-2 text-xl font-bold tracking-tight text-textcolor">${restName}</h5>
-      <p class="mb-3 font-normal text-textcolor">${activity}</p>
-      <p class="hidden"> ${address}</p>
-      <p class="hidden"> ${phone}</p>
+      <h4 class="mb-2 text-xl font-bold tracking-tight text-textcolor" id="restaurantName">${restName}</h4>
+      <h5 class="mb-3 font-normal text-textcolor" id="dateAct">${activity}</h5>
+      <span class="hidden" id="restAddress"> ${address}</span>
+      <p class="hidden" id="restPhone"> ${phone}</p>
     
     
   </div>
@@ -282,9 +299,22 @@ function generateRestaurant(image, restName, activity, address, phone) {
 }
 
 function savedRestaurant(event) {
-  var storage = renderDates()
-  console.log(event.closest())
-  console.log(storage)
+
+var targetRestaurant =event.target.closest('.restaurant-card')
+showPage5()
+console.log(targetRestaurant)
+let newImage=targetRestaurant.querySelector('img').src
+let newName=targetRestaurant.querySelector('h4').innerText
+let newActivity=targetRestaurant.querySelector('h5').innerText
+let newAddress=targetRestaurant.querySelector('#restAddress').innerText
+let newPhone= targetRestaurant.querySelector('#restPhone').innerText
+document.getElementById('saved-restaurant-img').innerHTML = `<img src="${newImage}" alt="image of food " class="w-32 h-32 md:h-56 md:w-56 object-cover rounded-md">`
+document.getElementById('saved-restaurant-info').innerHTML =  `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name" "> ${newName}</h3>
+<a href=${googleURL} class="text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${newAddress} </p></a>
+<p class="md:text-xl" id="restaurant-phone">${newPhone} </p>
+`
+document.getElementById('saved-activity').innerHTML =  `<h3 class="text-xl text-textcolor font-bold text-center w-full  mx-2 my-auto md:text-2xl" id="shown-activity"> ${newActivity}</h3>`
+
 }
 
 
@@ -337,3 +367,5 @@ backIcon.addEventListener("click", showPage1)
 newRestaurant.addEventListener("click", getNewRestaurant)
 newActivity.addEventListener("click", getNewActivity)
 cards.addEventListener("click", savedRestaurant)
+goBack.addEventListener('click',onFavoritesIcon)
+
