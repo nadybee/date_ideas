@@ -283,9 +283,11 @@ function generateRestaurant(image, restName, activity, address, phone) {
 
 function savedRestaurant(event) {
   var storage = renderDates()
-  console.log(event)
+  console.log(event.closest())
   console.log(storage)
 }
+
+
 function showMyDate() {
   buildActivity()
   showPage3()

@@ -2,21 +2,15 @@ TO DO:
 
 //improve fonts and colors
 
-// center buttons on large screens
-
 //adding hover state to buttons
 
 // formating for larger screens
 
-//format images universal
 
 //click to see saved activity
 
-//format images to be universal
 
-// error message from line 191 (saving image to local storage)
 
-//format phone number
 
 Extra features if we have time:
 
