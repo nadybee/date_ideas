@@ -7,7 +7,7 @@ TO DO:
 // formating for larger screens
 
 
-//click to see saved activity
+
 
 
 
