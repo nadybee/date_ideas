@@ -215,8 +215,8 @@ let storedHistory = "storedDate_"
 function dateHistory() {
   let restaurantImage = document.getElementById("restaurant-pic").src
   let storedDate = {
-    id: document.getElementById("restaurant-id").innerText,
-    name: document.getElementById("restaurant-name").innerText,
+    id:document.getElementById("restaurant-id").innerText,
+    name:document.getElementById("restaurant-name").innerText,
     image: restaurantImage,
     storedActivity: document.getElementById("shown-activity").innerText,
     storedAddress: document.getElementById("restaurant-address").innerText,
@@ -246,9 +246,10 @@ function showSavedDates() {
   const datesToShow = renderDates()
   let datesHTML = []
   let dateCards = document.getElementById("cards")
-
+console.log(datesToShow[0].id)
   for (let i = 0; i < datesToShow.length; i++) {
     var restaurant = generateRestaurant(
+      datesToShow[i].id,
       datesToShow[i].image,
       datesToShow[i].name,
       datesToShow[i].storedActivity,
@@ -265,15 +266,15 @@ function showSavedDates() {
   }
 }
 
-function generateRestaurant(image, restName, activity, address, phone) {
-  return `   <a href="#" class="flex items-center align-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 mx-1 restaurant-card">
+{/* <span class="hidden" id="restAddress"> ${address}</span>
+      <p class="hidden" id="restPhone"> ${phone}</p> */}
+function generateRestaurant(id,image, restName, activity, address, phone) {
+  return `   <a data-restaurant_id= ${id} href="#" class="flex items-center align-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 mx-1 restaurant-card">
   <img class="object-cover w-1/3 h-32 rounded-l-md aspect-square" src="${image}" alt="">
   <div class="flex flex-col justify-between p-4 leading-normal">
       <h4 class="mb-2 text-xl font-bold tracking-tight text-secondary" id="restaurantName">${restName}</h4>
       <h5 class="mb-3 font-normal text-textcolor" id="dateAct">${activity}</h5>
-      <span class="hidden" id="restAddress"> ${address}</span>
-      <p class="hidden" id="restPhone"> ${phone}</p>
-  
+    
   </div>
 </a>`
 }
@@ -281,24 +282,23 @@ function generateRestaurant(image, restName, activity, address, phone) {
 function savedRestaurant(event) {
   var targetRestaurant = event.target.closest(".restaurant-card")
   showPage5()
+  console.log(typeof targetRestaurant.dataset.restaurant_id)
   console.log(targetRestaurant)
-  let newImage = targetRestaurant.querySelector("img").src
-  let newName = targetRestaurant.querySelector("h4").innerText
-  let newActivity = targetRestaurant.querySelector("h5").innerText
-  let newAddress = targetRestaurant.querySelector("#restAddress").innerText
-  let newPhone = targetRestaurant.querySelector("#restPhone").innerText
+ let clickedRestaurant= renderDates().filter(date=>date.id.trim() ===`${targetRestaurant.dataset.restaurant_id}`)
+ console.log(clickedRestaurant[0])
+
   document.getElementById(
     "saved-restaurant-img"
-  ).innerHTML = `<img src="${newImage}" alt="image of food " class="w-32 h-32 md:h-56 md:w-56 object-cover rounded-md">`
+  ).innerHTML = `<img src="${clickedRestaurant[0].image}" alt="image of food " class="w-32 h-32 md:h-56 md:w-56 object-cover rounded-md">`
   document.getElementById(
     "saved-restaurant-info"
-  ).innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name" "> ${newName}</h3>
-<a href=${googleURL} class="text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${newAddress} </p></a>
-<p class="md:text-xl" id="restaurant-phone">${newPhone} </p>
+  ).innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name" "> ${clickedRestaurant[0].name}</h3>
+<a href=${googleURL} class="text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${clickedRestaurant[0].storedAddress} </p></a>
+<p class="md:text-xl" id="restaurant-phone">${clickedRestaurant[0].storedPhone} </p>
 `
   document.getElementById(
     "saved-activity"
-  ).innerHTML = `<h3 class="text-xl text-textcolor font-bold text-center w-full  mx-2 my-auto md:text-2xl" id="shown-activity"> ${newActivity}</h3>`
+  ).innerHTML = `<h3 class="text-xl text-textcolor font-bold text-center w-full  mx-2 my-auto md:text-2xl" id="shown-activity"> ${clickedRestaurant[0].storedActivity}</h3>`
 }
 
 function showMyDate() {
