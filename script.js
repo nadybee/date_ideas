@@ -15,7 +15,7 @@ var returnHome = document.getElementById("return-home")
 var homeIcon = document.getElementById("home-icon")
 var backIcon = document.querySelector(".fa-angle-left")
 var cards = document.getElementById("cards")
-var goBack= document.getElementById('go-back')
+var goBack = document.getElementById("go-back")
 /**PAGES CONTAINERS AND HEADERS */
 var page1Header = document.getElementById("page1-header")
 var page1Cont = document.getElementById("page-one")
@@ -45,7 +45,7 @@ function showPage1() {
   page3Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
-  page5Cont.classList.add('hidden')
+  page5Cont.classList.add("hidden")
   zipcodeInput.value = ""
 }
 
@@ -58,8 +58,7 @@ function showPage2() {
   page3Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
-  page5Cont.classList.add('hidden')
-  // people.value = ""
+  page5Cont.classList.add("hidden")
 }
 
 function showPage3() {
@@ -71,7 +70,7 @@ function showPage3() {
   page2Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
-  page5Cont.classList.add('hidden')
+  page5Cont.classList.add("hidden")
 }
 
 function showPage4() {
@@ -84,11 +83,11 @@ function showPage4() {
   page2Cont.classList.add("hidden")
   page3Header.classList.add("md:hidden")
   page3Cont.classList.add("hidden")
-  page5Cont.classList.add('hidden')
+  page5Cont.classList.add("hidden")
 }
 
-function showPage5(){
-  page5Cont.classList.remove('hidden')
+function showPage5() {
+  page5Cont.classList.remove("hidden")
   page1Cont.classList.add("hidden")
   page1Cont.classList.add("hidden")
   page2Header.classList.add("hidden")
@@ -97,7 +96,6 @@ function showPage5(){
   page3Cont.classList.add("hidden")
   page4Header.classList.add("hidden")
   page4Cont.classList.add("hidden")
-
 }
 /** API KEYS */
 
@@ -123,28 +121,15 @@ function fetchRestaurants(yelpURL) {
     .then(function (data) {
       console.log(data)
       let randomIndex = Math.floor(Math.random() * data.businesses.length)
-      // console.log(
-      //   data.businesses[randomIndex].name +
-      //     " " +
-      //     data.businesses[randomIndex].location.display_address
-      // )
-      // console.log(data.businesses[randomIndex])
-     
+   
+
       showImg(data.businesses[randomIndex])
       showInfo(data.businesses[randomIndex])
-    
     })
 
     .catch((error) => {
-      // display error for user
-      // function validate() {
-      //   if (document.regform.fName.value.length == '0') {
-      //     document.getElementById("restaurant-info").innerHTML = `<p class=p-5> there was an error, check your zipcode and try again</p>`;
-      //     return false;
-      //   }
-      // }
       console.log("error", error)
-     restaurantInfo.innerHTML = `<p class="p-5 text-orange-700"> there was an error, click back and try again</p>`
+      restaurantInfo.innerHTML = `<p class="p-5 text-orange-700"> there was an error, click back and try again</p>`
     })
 }
 
@@ -154,16 +139,12 @@ function buildYelpURL() {
   let open = document.querySelector("input[name=hours]:checked").value
   yelpURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=${zipcode}&price=${price}&open_now=${open}`
   fetchRestaurants(yelpURL)
-  
 }
 
 //FOR BORED API
-//www.boredapi.com/api/activity?minaccessibility=0&maxaccessibility=0&minprice=0&maxprice=1&participants=4`
-
 let boredURL
 
 function fetchActivities(boredURL) {
-
   fetch(boredURL)
     .then(function (response) {
       if (!response.ok) {
@@ -179,7 +160,6 @@ function fetchActivities(boredURL) {
     .catch((error) => {
       console.log(error)
       activity.innerHTML = `<p class="p-5 text-orange-700"> there was an error, click back and try again</p>`
-
     })
 }
 
@@ -198,7 +178,7 @@ function showImg(restaurant) {
 }
 
 function showInfo(restaurant) {
-   buildMapsURL(restaurant)
+  buildMapsURL(restaurant)
   restaurantInfo.innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name" "> ${restaurant.name}</h3>
   <span class="hidden" id="restaurant-id"> ${restaurant.id} </span>
   
@@ -221,20 +201,21 @@ function getNewActivity() {
 }
 
 /** date history to local storage functions */
-let googleURL;
-function buildMapsURL(restaurant){
-
-  let restName= restaurant.name.replaceAll(' ','+')
-  let restAddress= restaurant.location.display_address.toString().replaceAll(' ','+')
-   googleURL =  `https://www.google.com/maps/search/?api=1&query=${restName}+${restAddress}`
+let googleURL
+function buildMapsURL(restaurant) {
+  let restName = restaurant.name.replaceAll(" ", "+")
+  let restAddress = restaurant.location.display_address
+    .toString()
+    .replaceAll(" ", "+")
+  googleURL = `https://www.google.com/maps/search/?api=1&query=${restName}+${restAddress}`
   return googleURL
 }
 //STORE SAVED DATES
-let storedHistory= 'storedDate_';
+let storedHistory = "storedDate_"
 function dateHistory() {
   let restaurantImage = document.getElementById("restaurant-pic").src
   let storedDate = {
-    id: document.getElementById('restaurant-id').innerText,
+    id: document.getElementById("restaurant-id").innerText,
     name: document.getElementById("restaurant-name").innerText,
     image: restaurantImage,
     storedActivity: document.getElementById("shown-activity").innerText,
@@ -243,7 +224,7 @@ function dateHistory() {
   }
 
   localStorage.setItem(
-   storedHistory+ storedDate.id,
+    storedHistory + storedDate.id,
     JSON.stringify(storedDate)
   )
   console.log(storedDate)
@@ -288,35 +269,37 @@ function generateRestaurant(image, restName, activity, address, phone) {
   return `   <a href="#" class="flex items-center align-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 mx-1 restaurant-card">
   <img class="object-cover w-1/3 h-32 rounded-l-md aspect-square" src="${image}" alt="">
   <div class="flex flex-col justify-between p-4 leading-normal">
-      <h4 class="mb-2 text-xl font-bold tracking-tight text-textcolor" id="restaurantName">${restName}</h4>
+      <h4 class="mb-2 text-xl font-bold tracking-tight text-secondary" id="restaurantName">${restName}</h4>
       <h5 class="mb-3 font-normal text-textcolor" id="dateAct">${activity}</h5>
       <span class="hidden" id="restAddress"> ${address}</span>
       <p class="hidden" id="restPhone"> ${phone}</p>
-    
-    
+  
   </div>
 </a>`
 }
 
 function savedRestaurant(event) {
-
-var targetRestaurant =event.target.closest('.restaurant-card')
-showPage5()
-console.log(targetRestaurant)
-let newImage=targetRestaurant.querySelector('img').src
-let newName=targetRestaurant.querySelector('h4').innerText
-let newActivity=targetRestaurant.querySelector('h5').innerText
-let newAddress=targetRestaurant.querySelector('#restAddress').innerText
-let newPhone= targetRestaurant.querySelector('#restPhone').innerText
-document.getElementById('saved-restaurant-img').innerHTML = `<img src="${newImage}" alt="image of food " class="w-32 h-32 md:h-56 md:w-56 object-cover rounded-md">`
-document.getElementById('saved-restaurant-info').innerHTML =  `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name" "> ${newName}</h3>
+  var targetRestaurant = event.target.closest(".restaurant-card")
+  showPage5()
+  console.log(targetRestaurant)
+  let newImage = targetRestaurant.querySelector("img").src
+  let newName = targetRestaurant.querySelector("h4").innerText
+  let newActivity = targetRestaurant.querySelector("h5").innerText
+  let newAddress = targetRestaurant.querySelector("#restAddress").innerText
+  let newPhone = targetRestaurant.querySelector("#restPhone").innerText
+  document.getElementById(
+    "saved-restaurant-img"
+  ).innerHTML = `<img src="${newImage}" alt="image of food " class="w-32 h-32 md:h-56 md:w-56 object-cover rounded-md">`
+  document.getElementById(
+    "saved-restaurant-info"
+  ).innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name" "> ${newName}</h3>
 <a href=${googleURL} class="text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${newAddress} </p></a>
 <p class="md:text-xl" id="restaurant-phone">${newPhone} </p>
 `
-document.getElementById('saved-activity').innerHTML =  `<h3 class="text-xl text-textcolor font-bold text-center w-full  mx-2 my-auto md:text-2xl" id="shown-activity"> ${newActivity}</h3>`
-
+  document.getElementById(
+    "saved-activity"
+  ).innerHTML = `<h3 class="text-xl text-textcolor font-bold text-center w-full  mx-2 my-auto md:text-2xl" id="shown-activity"> ${newActivity}</h3>`
 }
-
 
 function showMyDate() {
   buildActivity()
@@ -328,7 +311,7 @@ function restaurantCreator() {
   buildYelpURL()
 }
 
-function nextPage() {}
+
 
 function onSave() {
   showPage4()
@@ -367,5 +350,4 @@ backIcon.addEventListener("click", showPage1)
 newRestaurant.addEventListener("click", getNewRestaurant)
 newActivity.addEventListener("click", getNewActivity)
 cards.addEventListener("click", savedRestaurant)
-goBack.addEventListener('click',onFavoritesIcon)
-
+goBack.addEventListener("click", onFavoritesIcon)
