@@ -210,6 +210,15 @@ function buildMapsURL(restaurant) {
   googleURL = `https://www.google.com/maps/search/?api=1&query=${restName}+${restAddress}`
   return googleURL
 }
+
+function buildMapsURLFromSaved(restaurant) {
+  let restName = restaurant.name.replaceAll(" ", "+")
+  let restAddress = restaurant.storedAddress
+    .toString()
+    .replaceAll(" ", "+")
+  googleURL = `https://www.google.com/maps/search/?api=1&query=${restName}+${restAddress}`
+  return googleURL
+}
 //STORE SAVED DATES
 let storedHistory = "storedDate_"
 function dateHistory() {
@@ -286,7 +295,7 @@ function savedRestaurant(event) {
   console.log(targetRestaurant)
  let clickedRestaurant= renderDates().filter(date=>date.id.trim() ===`${targetRestaurant.dataset.restaurant_id}`)
  console.log(clickedRestaurant[0])
-
+buildMapsURLFromSaved(clickedRestaurant[0])
   document.getElementById(
     "saved-restaurant-img"
   ).innerHTML = `<img src="${clickedRestaurant[0].image}" alt="image of food " class="w-32 h-32 md:h-56 md:w-56 object-cover rounded-md">`
