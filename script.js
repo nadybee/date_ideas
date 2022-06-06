@@ -119,7 +119,7 @@ function fetchRestaurants(yelpURL) {
   fetch(yelpURL, requestOptions)
     .then((response) => response.json())
     .then(function (data) {
-      console.log(data)
+      // console.log(data)
       let randomIndex = Math.floor(Math.random() * data.businesses.length)
    
 
@@ -153,8 +153,8 @@ function fetchActivities(boredURL) {
       return response.json()
     })
     .then(function (data) {
-      //hide spinner
-      console.log(data.activity)
+
+      // console.log(data.activity)
       showActivity(data)
     })
     .catch((error) => {
@@ -236,7 +236,7 @@ function dateHistory() {
     storedHistory + storedDate.id,
     JSON.stringify(storedDate)
   )
-  console.log(storedDate)
+  // console.log(storedDate)
   renderDates()
   showSavedDates()
 }
@@ -255,7 +255,7 @@ function showSavedDates() {
   const datesToShow = renderDates()
   let datesHTML = []
   let dateCards = document.getElementById("cards")
-console.log(datesToShow[0].id)
+// console.log(datesToShow[0].id)
   for (let i = 0; i < datesToShow.length; i++) {
     var restaurant = generateRestaurant(
       datesToShow[i].id,
@@ -291,10 +291,8 @@ function generateRestaurant(id,image, restName, activity, address, phone) {
 function savedRestaurant(event) {
   var targetRestaurant = event.target.closest(".restaurant-card")
   showPage5()
-  console.log(typeof targetRestaurant.dataset.restaurant_id)
-  console.log(targetRestaurant)
  let clickedRestaurant= renderDates().filter(date=>date.id.trim() ===`${targetRestaurant.dataset.restaurant_id}`)
- console.log(clickedRestaurant[0])
+//  console.log(clickedRestaurant[0])
 buildMapsURLFromSaved(clickedRestaurant[0])
   document.getElementById(
     "saved-restaurant-img"
@@ -337,7 +335,7 @@ function isUSAZipCode(str) {
 }
 
 function validateInput() {
-  console.log("validateInput")
+  // console.log("validateInput")
   let zipCode = document.getElementById("zipcode").value
   let message = ""
   if (!isUSAZipCode(zipCode)) {
