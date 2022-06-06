@@ -167,7 +167,7 @@ function buildActivity() {
   let actPrice = document.querySelector("input[name=free]:checked").value
   // let participants = people.value
   let accessibility = "0.0"
-  boredURL = `http://www.boredapi.com/api/activity?minaccessibility=0&maxaccessibility=${accessibility}&minprice=0&maxprice=${actPrice}`
+  boredURL = `https://cors-anywhere.herokuapp.com/http://www.boredapi.com/api/activity?minaccessibility=0&maxaccessibility=${accessibility}&minprice=0&maxprice=${actPrice}`
 
   fetchActivities(boredURL)
 }
