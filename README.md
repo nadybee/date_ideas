@@ -17,4 +17,3 @@ http://cors-anywhere.herokuapp.com/corsdemo
 
 <img src= './assets/screenshot_phone.png' width="375">
 
-![alt text](./assets/screenshot.jpg)
