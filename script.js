@@ -16,13 +16,13 @@ var homeIcon = document.getElementById("home-icon")
 var backIcon = document.querySelector(".fa-angle-left")
 var cards = document.getElementById("cards")
 var goBack = document.getElementById("go-back")
+
 /**PAGES CONTAINERS AND HEADERS */
 var page1Header = document.getElementById("page1-header")
 var page1Cont = document.getElementById("page-one")
 var page2Cont = document.getElementById("page-two")
 var page2Header = document.getElementById("page2-header")
 var page3Header = document.getElementById("page3-header")
-
 var page3Cont = document.getElementById("page-three")
 var page4Header = document.getElementById("page4-header")
 var page4Cont = document.getElementById("page-four")
@@ -36,6 +36,7 @@ var people = document.getElementById("people")
 var accessible = document.getElementById("accessible")
 
 /** FUNCTIONS TO SHOW AND HIDE PAGES */
+
 function showPage1() {
   page1Header.classList.remove("hidden")
   page1Cont.classList.remove("hidden")
@@ -99,7 +100,6 @@ function showPage5() {
 }
 /** API KEYS */
 
-// var apiKey = "Bearer mBoDH4rsoLue6XA8D1yQxqIWgXEuXNblkFNatJOaePgeVk5YMVB_X7fRfx2UG_7WrXCweMV0rAngdQ6DPHxLHe2Iqafgb6KVc1NklA3qpGL4ucfr1f28YQLfQ8iOYnYx"
 var apiKey =
   "Bearer HyNYhS-Wk9nc__m_elZsc3b9xAcu1I2Y0VcFoRw7XUMwWUXiwjjOAJU3jIYeFHgOyVHwGgkDE-Tcrp7k0ED2vdCXHAARiWKDylcxBQ-zm19OPXRgpRT_vt3O-1SNYnYx"
 
@@ -121,7 +121,6 @@ function fetchRestaurants(yelpURL) {
     .then(function (data) {
       // console.log(data)
       let randomIndex = Math.floor(Math.random() * data.businesses.length)
-   
 
       showImg(data.businesses[randomIndex])
       showInfo(data.businesses[randomIndex])
@@ -153,7 +152,6 @@ function fetchActivities(boredURL) {
       return response.json()
     })
     .then(function (data) {
-
       // console.log(data.activity)
       showActivity(data)
     })
@@ -170,6 +168,21 @@ function buildActivity() {
   boredURL = `https://cors-anywhere.herokuapp.com/http://www.boredapi.com/api/activity?minaccessibility=0&maxaccessibility=${accessibility}&minprice=0&maxprice=${actPrice}`
 
   fetchActivities(boredURL)
+}
+
+/** VALIDATE USER ZIPCODE INPUT CALLED IN HTML LINE 123 */
+function isUSAZipCode(str) {
+  return /^\d{5}(-\d{4})?$/.test(str)
+}
+
+function validateInput() {
+  // console.log("validateInput")
+  let zipCode = document.getElementById("zipcode").value
+  let message = ""
+  if (!isUSAZipCode(zipCode)) {
+    message = "Invalid zipcode please try again"
+  }
+  document.getElementById("msg").innerHTML = message
 }
 
 /** DISPLAY RANDOM RESTAURANT AND ACTIVITY TO DOM */
@@ -190,7 +203,7 @@ function showActivity(data) {
   activity.innerHTML = `<h3 class="text-xl text-textcolor font-bold text-center w-full  mx-2 my-auto md:text-2xl" id="shown-activity"> ${data.activity}</h3>`
 }
 
-/** functions to change the date */
+/** functions to get a new date */
 
 function getNewRestaurant() {
   fetchRestaurants(yelpURL)
@@ -213,9 +226,7 @@ function buildMapsURL(restaurant) {
 
 function buildMapsURLFromSaved(restaurant) {
   let restName = restaurant.name.replaceAll(" ", "+")
-  let restAddress = restaurant.storedAddress
-    .toString()
-    .replaceAll(" ", "+")
+  let restAddress = restaurant.storedAddress.toString().replaceAll(" ", "+")
   googleURL = `https://www.google.com/maps/search/?api=1&query=${restName}+${restAddress}`
   return googleURL
 }
@@ -224,8 +235,8 @@ let storedHistory = "storedDate_"
 function dateHistory() {
   let restaurantImage = document.getElementById("restaurant-pic").src
   let storedDate = {
-    id:document.getElementById("restaurant-id").innerText,
-    name:document.getElementById("restaurant-name").innerText,
+    id: document.getElementById("restaurant-id").innerText,
+    name: document.getElementById("restaurant-name").innerText,
     image: restaurantImage,
     storedActivity: document.getElementById("shown-activity").innerText,
     storedAddress: document.getElementById("restaurant-address").innerText,
@@ -255,7 +266,7 @@ function showSavedDates() {
   const datesToShow = renderDates()
   let datesHTML = []
   let dateCards = document.getElementById("cards")
-// console.log(datesToShow[0].id)
+  // console.log(datesToShow[0].id)
   for (let i = 0; i < datesToShow.length; i++) {
     var restaurant = generateRestaurant(
       datesToShow[i].id,
@@ -275,9 +286,8 @@ function showSavedDates() {
   }
 }
 
-{/* <span class="hidden" id="restAddress"> ${address}</span>
-      <p class="hidden" id="restPhone"> ${phone}</p> */}
-function generateRestaurant(id,image, restName, activity, address, phone) {
+//html for saved restaurant cards
+function generateRestaurant(id, image, restName, activity, address, phone) {
   return `   <a data-restaurant_id= ${id} href="#" class="flex items-center align-center bg-white rounded-lg border shadow-md hover:bg-gray-100 mb-5 mx-1 restaurant-card">
   <img class="object-cover w-1/3 h-32 rounded-l-md aspect-square" src="${image}" alt="">
   <div class="flex flex-col justify-between p-4 leading-normal">
@@ -288,12 +298,15 @@ function generateRestaurant(id,image, restName, activity, address, phone) {
 </a>`
 }
 
+/** LISTEN FOR CLICKED SAVED RESTAURANT AND SHOW DETAILS OF CLICKED RESTAURANT */
 function savedRestaurant(event) {
   var targetRestaurant = event.target.closest(".restaurant-card")
   showPage5()
- let clickedRestaurant= renderDates().filter(date=>date.id.trim() ===`${targetRestaurant.dataset.restaurant_id}`)
-//  console.log(clickedRestaurant[0])
-buildMapsURLFromSaved(clickedRestaurant[0])
+  let clickedRestaurant = renderDates().filter(
+    (date) => date.id.trim() === `${targetRestaurant.dataset.restaurant_id}`
+  )
+  //  console.log(clickedRestaurant[0])
+  buildMapsURLFromSaved(clickedRestaurant[0])
   document.getElementById(
     "saved-restaurant-img"
   ).innerHTML = `<img src="${clickedRestaurant[0].image}" alt="image of food " class="w-32 h-32 md:h-56 md:w-56 object-cover rounded-md">`
@@ -308,40 +321,31 @@ buildMapsURLFromSaved(clickedRestaurant[0])
   ).innerHTML = `<h3 class="text-xl text-textcolor font-bold text-center w-full  mx-2 my-auto md:text-2xl" id="shown-activity"> ${clickedRestaurant[0].storedActivity}</h3>`
 }
 
+/** FUNCTIONS FOR CLICK EVENTS*/
+
+//PLAN DATE CLICK
 function showMyDate() {
   buildActivity()
   showPage3()
 }
 
+//NEXT BUTTON
 function restaurantCreator() {
   showPage2()
   buildYelpURL()
 }
 
-
-
+//SAVE BUTTON TO SAVE DATE TO LOCAL STORAGE
 function onSave() {
   showPage4()
   dateHistory()
 }
 
+//FAVORITE ICON TO SHOW SAVED DATES
 function onFavoritesIcon() {
   showPage4()
   renderDates()
   showSavedDates()
-}
-function isUSAZipCode(str) {
-  return /^\d{5}(-\d{4})?$/.test(str)
-}
-
-function validateInput() {
-  // console.log("validateInput")
-  let zipCode = document.getElementById("zipcode").value
-  let message = ""
-  if (!isUSAZipCode(zipCode)) {
-    message = "Invalid zipcode please try again"
-  }
-  document.getElementById("msg").innerHTML = message
 }
 
 /** EVENT LISTENERS */
