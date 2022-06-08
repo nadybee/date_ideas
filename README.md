@@ -5,7 +5,7 @@ Don't know what to do tonight? A mobile web application that will plan your date
 
 This is a front end only moblie web app, in order to run this app you must first get permission, please go to the following link to request permission:
 
-http://cors-anywhere.herokuapp.com/corsdemo
+https://cors-anywhere.herokuapp.com/corsdemo
 
 
 ## Click here to see the live deployed app: https://nadybee.github.io/date_ideas/
