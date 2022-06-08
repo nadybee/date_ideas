@@ -195,7 +195,7 @@ function showInfo(restaurant) {
   restaurantInfo.innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name" "> ${restaurant.name}</h3>
   <span class="hidden" id="restaurant-id"> ${restaurant.id} </span>
   
-  <a href=${googleURL} class="text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${restaurant.location.display_address} </p></a>
+  <a href=${googleURL}  target="_blank" class="text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${restaurant.location.display_address} </p></a>
     <p class="md:text-xl" id="restaurant-phone">${restaurant.display_phone} </p>`
 }
 
@@ -313,7 +313,7 @@ function savedRestaurant(event) {
   document.getElementById(
     "saved-restaurant-info"
   ).innerHTML = `<h3 class= "text-xl md:text-2xl font-bold text-textcolor" id="restaurant-name" "> ${clickedRestaurant[0].name}</h3>
-<a href=${googleURL} class="text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${clickedRestaurant[0].storedAddress} </p></a>
+<a href=${googleURL}  target="_blank" class="text-secondary"> <p class="md:text-xl" id="restaurant-address"> ${clickedRestaurant[0].storedAddress} </p></a>
 <p class="md:text-xl" id="restaurant-phone">${clickedRestaurant[0].storedPhone} </p>
 `
   document.getElementById(
